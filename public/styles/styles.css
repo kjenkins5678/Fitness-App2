@@ -1,3 +1,7 @@
-.list-group-item {
-  line-height: 2.5;
+.sidebar { 
+  background-color: mediumspringgreen;
+}
+
+.user-info{
+  background-color: blanchedalmond;
 }
