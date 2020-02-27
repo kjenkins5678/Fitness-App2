@@ -1,0 +1,59 @@
+<div class="container">
+
+   <div class="jumbotron">
+      <h2 class="text-center">Activity Maintenance</h2>
+      <br>
+   </div> <!--jumbotron-->
+
+   <div class="row">
+      <div class="col-4">
+         <h4>Categories</h4>
+
+         <form class="clearfix mb-4" action="POST">
+            <div class="form-group">
+               <input type="text" class="form-control" id="category-name" placeholder="Enter New Category"></input>
+            </div>
+            <button id="submit-cat" class="btn btn-primary float-right">Submit</button>
+         </form>
+
+         <hr>
+         <ul>
+         {{#each catList}}
+            <li>
+               <p>
+               <a href="/activity-maint/{{id}}" class="catLink" data-id="{{id}}">{{category_name}}</a>
+               <button class="btn btn-danger btn-sm float-right delete-cat" data-id="{{id}}">ｘ</button>
+               </p>
+               </li>
+         {{/each}} 
+         </ul>
+
+      </div> <!--col-->
+
+      <div class="col-6 offset-2">
+         <h4>Activities</h4>
+
+         <form class="clearfix mb-4" action="POST">
+            <div class="form-group">
+               <input type="text" class="form-control" id=" activity-name" placeholder="Enter New Activity"></input>
+            </div>
+            <button id="submit_act" class="btn btn-primary float-right">Submit</button>
+         </form>
+
+         <hr>
+         <ul class="activityList">
+         {{#each actList}}
+            <li>
+               <p>
+               <a href="" class="actLink" data-id="{{id}}">{{id}} {{activity_name}}</a>
+               </p>
+            </li>
+         {{/each}} 
+         </ul>
+
+     </div> <!--col-->
+
+  </div> <!--row-->
+</div> <!--container-->
+
+

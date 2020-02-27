@@ -1,7 +1,12 @@
 .sidebar { 
   background-color: mediumspringgreen;
 }
-
+body {
+  background-color:#f4e7d7;
+}
+.jumbotron{
+  background-color:#c88937;
+}
 .user-info{
   background-color: blanchedalmond;
 }
