@@ -1,6 +1,10 @@
 var db = require("../models");
 
 module.exports = function(app) {
+
+  // ********************************************
+  // ********************************************
+
   // Get all examples
   app.get("/api/examples", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
@@ -20,5 +24,14 @@ module.exports = function(app) {
     db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
       res.json(dbExample);
     });
+  });
+
+  // ********************************************
+  // ********************************************
+
+  app.post("/api/category", function(req, res){
+    //db.Activity_Category.create(req.body).then(function(dbCat){
+    //  res.json(dbCat);
+    //})
   });
 };
