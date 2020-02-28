@@ -8,21 +8,19 @@
    <div class="row">
       <div class="col-4">
          <h4>Categories</h4>
-
+         <button id="submit-cat" class="btn btn-primary float-right">Submit</button>
          <form class="clearfix mb-4" action="POST">
             <div class="form-group">
                <input type="text" class="form-control" id="category-name" placeholder="Enter New Category"></input>
             </div>
-            <button id="submit-cat" class="btn btn-primary float-right">Submit</button>
          </form>
-
          <hr>
          <ul>
          {{#each catList}}
             <li>
                <p>
                <a href="/activity-maint/{{id}}" class="catLink" data-id="{{id}}">{{category_name}}</a>
-               <button class="btn btn-danger btn-sm float-right   delete-cat" data-id="{{id}}">ｘ</button> <!---->
+               <button class="btn btn-danger btn-sm float-right delete-cat" data-id="{{id}}">ｘ</button> <!---->
                </p>
                </li>
          {{/each}} 
@@ -30,22 +28,25 @@
 
       </div> <!--col-->
 
-      <div class="col-6 offset-2">
+      <div class="col-7 offset-1">
          <h4>Activities</h4>
-
+         <button id="submit_act" class="btn btn-primary float-right">Submit</button>
          <form class="clearfix mb-4" action="POST">
             <div class="form-group">
-               <input type="text" class="form-control" id=" activity-name" placeholder="Enter New Activity"></input>
+               <input type="text" class="form-control" id="activity-name" placeholder="Enter New Activity"></input>
             </div>
-            <button id="submit_act" class="btn btn-primary float-right">Submit</button>
          </form>
 
          <hr>
+         <h6>Activity/MET</h6>
          <ul class="activityList">
          {{#each actList}}
             <li>
                <p>
-               <a href="" class="actLink" data-id="{{id}}">{{id}} {{activity_name}}</a>
+               <input type="text" class="actNameList" value={{activity_name}}></input> 
+               <input type="text" class="actMetList" value={{met}}></input> 
+               <button class="btn btn-danger btn-sm float-right delete-act" data-id="{{id}}">ｘ</button> <!---->
+               <button class="btn btn-danger btn-sm float-right update-act" data-id="{{id}}">upd</button> <!---->
                </p>
             </li>
          {{/each}} 

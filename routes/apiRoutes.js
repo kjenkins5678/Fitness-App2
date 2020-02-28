@@ -30,7 +30,7 @@ module.exports = function(app) {
   // ********************************************
 
   app.post("/api/newCat", function(req, res){
-    console.log("new cat ");
+    //console.log("new cat ");
     db.Activity_Category.create(req.body).then(function(dbCat){
       res.json(dbCat);
     })
@@ -40,7 +40,7 @@ module.exports = function(app) {
   // ********************************************
 
   app.delete("/api/delCat/:id", function(req, res) {
-    console.log("cat del");
+    //console.log("cat del");
     db.Activity_Category.destroy({
       where: {
         id: req.params.id

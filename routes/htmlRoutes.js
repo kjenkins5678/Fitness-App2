@@ -28,7 +28,7 @@ module.exports = function(app) {
         db.Activity.findAll({
           where: { fk_activity_category: req.params.id }
         }).then(function(act) {
-          //console.log(act);
+          console.log(act);
           res.render("activity-maint", { catList: cat, actList: act });
         });
       }

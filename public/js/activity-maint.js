@@ -20,7 +20,8 @@ newCatButton.on("click", function() {
   var newCat = newCatElem.val().trim();
   var newCatInsert = {category_name: newCat}; 
   $.post("/api/newCat", newCatInsert).then(function(dbCat){
-    console.log("insert ok");
+    console.log("insert ok" + dbCat);
+    location.reload();
   });
 });
 
@@ -31,6 +32,9 @@ deleteCatButton.on("click", function() {
   $.ajax({
     method: "DELETE",
     url: "/api/delCat/" + id
+  }).then(function(dbCat) {
+    console.log("deleted  " + dbCat);
+    location.reload();
   });
 });
 
@@ -44,7 +48,7 @@ $(document).on("click", "a", function() {
   //var href = $(this).attr("href");
   //alert("You're trying to go to " + href);
   selectedCat = parseInt($(this).attr("data-id"));
-  alert("ID " + selectedCat);
+  //alert("ID " + selectedCat);
 });
 
 // **********************************************

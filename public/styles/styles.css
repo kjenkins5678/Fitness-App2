@@ -11,3 +11,15 @@ body {
 .user-info{
   background-color: blanchedalmond;
 }
+#category-name{
+  width:240px; 
+}
+#activity-name{
+  width:240px; 
+}
+.actNameList{
+  width:340px; 
+}
+.actMetList{
+  width:60px; 
+}
