@@ -23,3 +23,9 @@ body {
 .actMetList{
   width:60px; 
 }
+.form-group{
+  margin-bottom:0px;
+}
+p{
+  margin-bottom:8px;
+}

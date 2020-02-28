@@ -44,9 +44,6 @@ newActButton.on("click", function() {
 })
 
 $(document).on("click", "a", function() {
-  //this == the link that was clicked
-  //var href = $(this).attr("href");
-  //alert("You're trying to go to " + href);
   selectedCat = parseInt($(this).attr("data-id"));
   //alert("ID " + selectedCat);
 });
