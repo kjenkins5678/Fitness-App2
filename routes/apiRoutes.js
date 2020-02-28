@@ -29,9 +29,24 @@ module.exports = function(app) {
   // ********************************************
   // ********************************************
 
-  app.post("/api/category", function(req, res){
-    //db.Activity_Category.create(req.body).then(function(dbCat){
-    //  res.json(dbCat);
-    //})
+  app.post("/api/newCat", function(req, res){
+    console.log("new cat ");
+    db.Activity_Category.create(req.body).then(function(dbCat){
+      res.json(dbCat);
+    })
+  });
+
+  // ********************************************
+  // ********************************************
+
+  app.delete("/api/delCat/:id", function(req, res) {
+    console.log("cat del");
+    db.Activity_Category.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbCat) {
+      res.json(dbCat);
+    });
   });
 };

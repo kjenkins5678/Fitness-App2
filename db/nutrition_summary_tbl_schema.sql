@@ -13,3 +13,6 @@ CREATE TABLE FdNutritionSummary (
   Carbohydrates float not null,
   PRIMARY KEY (FoodId)
 ) 
+
+
+alter table 

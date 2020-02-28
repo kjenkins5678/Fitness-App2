@@ -6,6 +6,7 @@ body {
 }
 .jumbotron{
   background-color:#c88937;
+  height:150px; 
 }
 .user-info{
   background-color: blanchedalmond;
