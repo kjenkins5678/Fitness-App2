@@ -1,5 +1,0 @@
-DROP DATABASE IF EXISTS fitness_app2_db;
-CREATE DATABASE fitness_app2_db;
-
--- DROP DATABASE IF EXISTS testdb;
--- CREATE DATABASE testdb;
