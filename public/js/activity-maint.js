@@ -2,44 +2,64 @@
 // globals
 // **********************************************
 var newCatElem = $("#category-name");
-var newCatButton = $("#submit-cat"); 
-var deleteCatButton = $(".delete-cat"); 
-var newActButton = $("#submit_act");
+var newCatButton = $("#submit-cat");
+var deleteCatButton = $(".delete-cat");
+var newActButton = $("#submit-act");
+var newActElem = $("#activity-name");
+var newMetElem = $("#new-met");
 
-var selectedCat = 0; 
+var selectedCat = 0;
+
 // **********************************************
-// functions 
+// functions
 // **********************************************
 
 // **********************************************
 // listeners
 // **********************************************
-newCatButton.on("click",function (){
-   event.preventDefault();
-   console.log ("new category"); 
-}); 
 
-deleteCatButton.on("click",function (){
-   event.preventDefault();
-   //console.log ("here i am"); 
-   //console.log (event.target); 
-   var id = event.target.getAttribute ("data-id"); 
-   console.log ("delete id " + id); 
-}); 
+newCatButton.on("click", function() {
+  event.preventDefault();
+  var newCat = newCatElem.val().trim();
+  var newCatInsert = {category_name: newCat}; 
+  $.post("/api/newCat", newCatInsert).then(function(dbCat){
+    console.log("insert ok" + dbCat);
+    location.reload();
+  });
+});
 
-newActButton.on("click",function() {
-   event.preventDefault();
-   console.log ("new activity"); 
-})
+deleteCatButton.on("click", function() {
+  event.preventDefault();
+  var id = event.target.getAttribute("data-id");
+  console.log("delete id " + id);
+  $.ajax({
+    method: "DELETE",
+    url: "/api/delCat/" + id
+  }).then(function(dbCat) {
+    console.log("deleted  " + dbCat);
+    location.reload();
+  });
+});
+
+newActButton.on("click", function() {
+  event.preventDefault();
+  console.log("new activity selected cat " + window.location.href);
+  /*
+  var newAct = newActElem.val().trim();
+  var newMet = newMetElem.val().trim();
+  var newActInsert = {activity_name: newAct, met: newMet, fk_activity_category: selectedCat}; 
+  $.post("/api/newActivity", newActInsert).then(function(dbCat){
+    console.log("insert ok" + dbCat);
+    //location.reload();
+  });
+*/
+});
 
 $(document).on("click", "a", function() {
-    //this == the link that was clicked
-    var href = $(this).attr("href");
-    //alert("You're trying to go to " + href);
-    selectedCat = parseInt($(this).attr("data-id"));
-    alert("ID " + selectedCat);
+  //selectedCat = parseInt($(this).attr("data-id"));
+  //alert(selectedCat);
 });
 
 // **********************************************
-// init 
+// init
 // **********************************************

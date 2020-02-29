@@ -6,7 +6,29 @@ body {
 }
 .jumbotron{
   background-color:#c88937;
+  height:150px; 
 }
 .user-info{
   background-color: blanchedalmond;
+}
+#category-name{
+  width:240px; 
+}
+#activity-name{
+  width:440px; 
+}
+.actNameList{
+  width:340px; 
+}
+.actMetList{
+  width:60px; 
+}
+.form-group{
+  margin-bottom:0px;
+}
+p{
+  margin-bottom:8px;
+}
+#new-met{
+  width: 140px;
 }

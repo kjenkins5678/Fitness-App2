@@ -27,11 +27,40 @@ module.exports = function(app) {
   });
 
   // ********************************************
+  // activity categories 
   // ********************************************
 
-  app.post("/api/category", function(req, res){
-    //db.Activity_Category.create(req.body).then(function(dbCat){
-    //  res.json(dbCat);
-    //})
+  app.post("/api/newCat", function(req, res){
+    //console.log("new cat ");
+    db.Activity_Category.create(req.body).then(function(dbCat){
+      res.json(dbCat);
+    });
   });
+
+  app.delete("/api/delCat/:id", function(req, res) {
+    //console.log("cat del");
+    db.Activity_Category.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbCat) {
+      res.json(dbCat);
+    });
+  });
+
+  // ********************************************
+  // activities 
+  // ********************************************
+
+  app.post("/api/newActivity", function(req, res){
+    //console.log("new cat ");
+    db.Activity.create(req.body).then(function(dbCat){
+      res.json(dbCat);
+    });
+  });
+
+
+
+
 };
+
