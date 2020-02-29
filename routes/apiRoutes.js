@@ -49,7 +49,7 @@ module.exports = function(app) {
   });
 
   // ********************************************
-  // activities 
+  // activities
   // ********************************************
 
   app.post("/api/newActivity", function(req, res){
@@ -59,6 +59,34 @@ module.exports = function(app) {
     });
   });
 
+  app.post("/api/updActivity/:id", function(req, res) {
+
+    console.log("updActivity\n" + req.body.activity_name);
+    console.log("updActivity\n" + req.params.id);
+
+    db.Activity.update({
+      activity_name: req.body.activity_name,
+      met: req.body.met
+    }, {
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbAct) {
+      res.json(dbAct);
+    });
+
+  });
+
+  app.delete("/api/delActivity/:id", function(req, res) {
+    //console.log("cat del");
+    db.Activity.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbCat) {
+      res.json(dbCat);
+    });
+  });
 
 
 

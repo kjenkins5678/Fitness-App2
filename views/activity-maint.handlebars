@@ -46,14 +46,16 @@
             <p class="col-5"><strong>MET</strong></p>
          </div>
          {{#each actList}}
+         <form>
             <li>
                <p>
-               <input type="text" class="actNameList" value="{{activity_name}}"></input> 
-               <input type="text" class="actMetList" value={{met}}></input> 
-               <button class="btn btn-danger btn-sm float-right delete-act" data-id="{{id}}">ｘ</button> <!---->
-               <button class="btn btn-danger btn-sm float-right update-act" data-id="{{id}}">upd</button> <!---->
+               <input type="text" class="actNameList" data-id="{{id}}" value="{{activity_name}}" name="activity_name" id="actName{{id}}""></input> 
+               <input type="text" class="actMetList" data-id="{{id}}" value={{met}} name="met" id="actMet{{id}}""></input> 
+               <button class="btn btn-danger btn-sm float-right delete-act" data-id="{{id}}">ｘ</button> 
+               <button class="btn btn-danger btn-sm float-right update-act" value ="{{id}}" data-id="{{id}}" name="id" type="submit">upd</button> 
                </p>
             </li>
+            </form>
          {{/each}} 
          </ul>
 
