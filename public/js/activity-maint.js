@@ -2,9 +2,11 @@
 // globals
 // **********************************************
 var newCatElem = $("#category-name");
-var newCatButton = $("#submit-cat"); 
-var deleteCatButton = $(".delete-cat"); 
-var newActButton = $("#submit_act");
+var newCatButton = $("#submit-cat");
+var deleteCatButton = $(".delete-cat");
+var newActButton = $("#submit-act");
+var newActElem = $("#activity-name");
+var newMetElem = $("#new-met");
 
 var selectedCat = 0;
 
@@ -15,6 +17,7 @@ var selectedCat = 0;
 // **********************************************
 // listeners
 // **********************************************
+
 newCatButton.on("click", function() {
   event.preventDefault();
   var newCat = newCatElem.val().trim();
@@ -40,12 +43,21 @@ deleteCatButton.on("click", function() {
 
 newActButton.on("click", function() {
   event.preventDefault();
-  console.log("new activity");
-})
+  console.log("new activity selected cat " + window.location.href);
+  /*
+  var newAct = newActElem.val().trim();
+  var newMet = newMetElem.val().trim();
+  var newActInsert = {activity_name: newAct, met: newMet, fk_activity_category: selectedCat}; 
+  $.post("/api/newActivity", newActInsert).then(function(dbCat){
+    console.log("insert ok" + dbCat);
+    //location.reload();
+  });
+*/
+});
 
 $(document).on("click", "a", function() {
-  selectedCat = parseInt($(this).attr("data-id"));
-  //alert("ID " + selectedCat);
+  //selectedCat = parseInt($(this).attr("data-id"));
+  //alert(selectedCat);
 });
 
 // **********************************************

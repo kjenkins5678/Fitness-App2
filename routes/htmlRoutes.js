@@ -21,7 +21,7 @@ module.exports = function(app) {
 
   app.get("/activity-maint/:id", function (req,res){
     db.Activity_Category.findAll ().then(function (cat){
-      console.log("requested ID: " + req.params.id);
+      //console.log(cat);
       if (req.params.id===0 || typeof req.params.id == "undefined"){
         res.render("activity-maint", { catList: cat, actList: [] });
       } else {
