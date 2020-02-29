@@ -23,7 +23,8 @@ CREATE TABLE `user_activities` (
   `duration` int NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
+  `fk_user` int, 
   PRIMARY KEY (`id`),
-  KEY `fk_users` (`fk_users`),
-  CONSTRAINT `users_ibfk_1` FOREIGN KEY (`fk_users`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  KEY `fk_user` (`fk_user`),
+  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`fk_user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
