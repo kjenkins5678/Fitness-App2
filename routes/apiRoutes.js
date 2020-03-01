@@ -88,6 +88,20 @@ module.exports = function(app) {
     });
   });
 
+  // ********************************************
+  // user
+  // ********************************************
+
+  app.get("/api/getUser/:id", function(req, res) {
+    db.User.findAll({
+      where: { id: req.params.id }
+    }).then(function(dbUser) {
+      //console.log(act);
+      res.json(dbUser);
+    });
+  });
+
+
 
 
 };

@@ -97,6 +97,7 @@ deleteActButton.on("click", function() {
 // click on any anchor tag 
 
 $(document).on("click", "a", function() {
+  //event.preventDefault();
   //selectedCat = parseInt($(this).attr("data-id"));
   //alert(selectedCat);
 });
