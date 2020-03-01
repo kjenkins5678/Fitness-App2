@@ -16,6 +16,13 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         isNumeric: true
       }
+    },
+    fk_activity_category: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        isNumeric: true
+      }
     }
   });
   return Activity;
