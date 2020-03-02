@@ -11,7 +11,7 @@ body {
 .user-info{
   background-color: blanchedalmond;
 }
-#category-name{
+#category-name, #new-user-name{
   width:240px; 
 }
 #activity-name{
@@ -31,4 +31,7 @@ p{
 }
 #new-met{
   width: 140px;
+}
+#calc-user, #submit-user{
+  margin-left:4px; 
 }

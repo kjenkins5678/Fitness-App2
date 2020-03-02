@@ -35,6 +35,7 @@ CREATE TABLE `users` (
   `gender` varchar(255) DEFAULT NULL,
   `activity_level` varchar(255) DEFAULT NULL,
   `goal` varchar(255) DEFAULT NULL,
+  'calories_per_day' decimal(10,0) DEFAULT NULL,
   `fat_per_day` decimal(10,0) DEFAULT NULL,
   `carbs_per_day` decimal(10,0) DEFAULT NULL,
   `protein_per_day` decimal(10,0) DEFAULT NULL,
