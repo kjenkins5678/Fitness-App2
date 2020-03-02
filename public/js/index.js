@@ -27,6 +27,8 @@ var genderInput;
 var activityLevelInput;
 var goalInput;
 
+var userListElem = $("#userList"); 
+
 // **********************************************
 // functions
 // **********************************************
@@ -167,9 +169,20 @@ $("#submit-user").on("click", function (){
   event.preventDefault();
   console.log ("submit-user"); 
   clearElems(); 
-  goalsH5Elem.text("Goals for " + $("#new-user-name").val());
+  var newName = $("#new-user-name").val(); 
+  goalsH5Elem.text("Goals for " + newName);
 
-}); 
+  console.log(newName);
+  var li =
+    '<li><p><a href="" class="userLink" data-id="0">' 
+    + newName
+    + '</a><button class="btn btn-danger btn-sm float-right delete-cat" data-id="{{id}}">ｘ</button>'
+    + '</p></li>';
+
+  console.log (li);
+  userListElem.append (li); 
+
+});
 
 // calc user 
 $("#calc-user").on("click", function () {
@@ -219,6 +232,10 @@ $("#userList").on("click", "a", function() {
     method: "GET",
     url: "/api/getUser/" + id
   }).then(function(dbUser) {
+
+    if (dbUser.length === 0){
+      return;
+    }
     console.log("retrieved  " + dbUser[0].id);
 
     nameInputElem.val(dbUser[0].user_name);
