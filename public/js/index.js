@@ -27,7 +27,9 @@ var genderInput;
 var activityLevelInput;
 var goalInput;
 
-var userListElem = $("#userList"); 
+var userListElem = $("#userList");
+
+var currentId=0;
 
 // **********************************************
 // functions
@@ -82,6 +84,7 @@ function calculate() {
       break;
   };
 
+  calsPerDay = Math.round (calsPerDay);
   calsPerDayElem.text(calsPerDay);
 
   switch(activityLevelInput){
@@ -164,13 +167,17 @@ function editInputs (){
 // listeners
 // **********************************************
 
-// submit new user 
+// **********************************************
+// submit new user
+// **********************************************
+
 $("#submit-user").on("click", function (){
   event.preventDefault();
   console.log ("submit-user"); 
   clearElems(); 
   var newName = $("#new-user-name").val(); 
   goalsH5Elem.text("Goals for " + newName);
+  nameInputElem.val(newName);
 
   console.log(newName);
   var li =
@@ -180,11 +187,14 @@ $("#submit-user").on("click", function (){
     + '</p></li>';
 
   console.log (li);
-  userListElem.append (li); 
+  userListElem.append(li);
 
 });
 
-// calc user 
+// **********************************************
+// calc user
+// **********************************************
+
 $("#calc-user").on("click", function () {
   event.preventDefault();
 
@@ -221,10 +231,78 @@ $("#calc-user").on("click", function () {
 
 }); // calc-user click
 
-// click on any anchor tag 
+// **********************************************
+// save a user
+// **********************************************
+
+$("#upsert-user").on("click", function() {
+  event.preventDefault();
+  //console.log ("upsert-user"); 
+  //alert("upsert-user");
+
+  $.ajax({
+    method: "GET",
+    url: "/api/getUserName/" + nameInputElem.val().trim()
+  }).then(function(dbUser) {
+    var userUpsert;
+    if (dbUser.length === 0) {
+      //alert("not found");
+      userUpsert = {
+        user_name: nameInputElem.val().trim(),
+        age: ageInputElem.val().trim(),
+        height_inches: heightInputElem.val().trim(),
+        height_cm: parseInt(heightInputElem.val().trim()) * 2.54,
+        weight_lb: weightInputElem.val().trim(),
+        weight_kg: weightInputElem.val().trim() * 0.453592,
+        gender: genderInputElem.val().trim(),
+        activity_level: activityLevelInputElem.val().trim(),
+        goal: goalInputElem.val().trim(),
+        calories_per_day: calsPerDayElem.text(),
+        fat_per_day: fatPerDayElem.text(),
+        carbs_per_day: carbsPerDayElem.text(),
+        protein_per_day: proteinPerDayElem.text()
+      };
+      $.post("/api/newUser", userUpsert).then(function(dbUser) {
+        console.log("user insert ok" + dbUser);
+        location.reload();
+      });
+    } else {
+      //alert("found, current ID " + currentId);
+      userUpsert = {
+        id: currentId,
+        user_name: nameInputElem.val().trim(),
+        age: ageInputElem.val().trim(),
+        height_inches: heightInputElem.val().trim(),
+        height_cm: parseInt(heightInputElem.val().trim()) * 2.54,
+        weight_lb: weightInputElem.val().trim(),
+        weight_kg: weightInputElem.val().trim() * 0.453592,
+        gender: genderInputElem.val().trim(),
+        activity_level: activityLevelInputElem.val().trim(),
+        goal: goalInputElem.val().trim(),
+        calories_per_day: calsPerDayElem.text(),
+        fat_per_day: fatPerDayElem.text(),
+        carbs_per_day: carbsPerDayElem.text(),
+        protein_per_day: proteinPerDayElem.text()
+      };
+
+      console.log(userUpsert); 
+
+      $.post("/api/updUser", userUpsert).then(function(dbUser) {
+        console.log("user insert ok" + dbUser);
+        location.reload();
+      });
+    }
+  });
+});
+
+// **********************************************
+// click on any anchor tag in the userList
+// **********************************************
+
 $("#userList").on("click", "a", function() {
   event.preventDefault();
   var id = event.target.getAttribute("data-id");
+  currentId = id; 
   var name = event.target.text;
   goalsH5Elem.text("Goals for " + name);
 
@@ -232,8 +310,7 @@ $("#userList").on("click", "a", function() {
     method: "GET",
     url: "/api/getUser/" + id
   }).then(function(dbUser) {
-
-    if (dbUser.length === 0){
+    if (dbUser.length === 0) {
       return;
     }
     console.log("retrieved  " + dbUser[0].id);

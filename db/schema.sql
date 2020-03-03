@@ -18,7 +18,7 @@ CREATE TABLE `activities` (
   `met` int NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  `fk_activity_category` int DEFAULT NULL,
+  `fk_activity_category` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_activity_category` (`fk_activity_category`),
   CONSTRAINT `activities_ibfk_1` FOREIGN KEY (`fk_activity_category`) REFERENCES `activity_categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
@@ -51,9 +51,12 @@ CREATE TABLE `user_activities` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `fk_user` int, 
+  `fk_activity` int, 
   PRIMARY KEY (`id`),
   KEY `fk_user` (`fk_user`),
-  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`fk_user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`fk_user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE, 
+  KEY `fk_activity` (`fk_activity`),
+  CONSTRAINT `user_ibfk_2` FOREIGN KEY (`fk_activity`) REFERENCES `activities` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE FdNutritionSummary (
