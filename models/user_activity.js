@@ -2,7 +2,7 @@
 // **********************************************
 
 module.exports = function(sequelize, DataTypes) {
-  var User_Activity = sequelize.define("User_Activity", {
+  var User_Activity = sequelize.define("User_Activity_Log", {
     activity_dt: {
       type: DataTypes.DATE,
       allowNull: false
@@ -12,5 +12,5 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   });
-  return User_Activity;
+  return User_Activity_Log;
 };
