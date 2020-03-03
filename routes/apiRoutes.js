@@ -3,6 +3,7 @@ var db = require("../models");
 module.exports = function(app) {
 
   // ********************************************
+  // boilerplate example stuff 
   // ********************************************
 
   // Get all examples
@@ -92,6 +93,7 @@ module.exports = function(app) {
   // user
   // ********************************************
 
+  // find by ID
   app.get("/api/getUser/:id", function(req, res) {
     db.User.findAll({
       where: { id: req.params.id }
@@ -101,8 +103,32 @@ module.exports = function(app) {
     });
   });
 
+  // find by name
+  app.get("/api/getUserName/:id", function(req, res) {
+    db.User.findAll({
+      where: { user_name: req.params.id }
+    }).then(function(dbUser) {
+      res.json(dbUser);
+    });
+  });
 
+  // insert
+  app.post("/api/newUser", function(req, res) {
+    db.User.create(req.body).then(function(dbUser){
+      res.json(dbUser);
+    });
+  });
 
+  // update
+  app.post("/api/updUser", function(req, res) {
+    console.log("ENTERING /API/UPDUSER");
+    db.User.update(req.body, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(dbUser) {
+      res.json(dbUser);
+    });
+  });
 
 };
-

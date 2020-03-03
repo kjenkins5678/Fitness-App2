@@ -69,7 +69,6 @@ module.exports = function(sequelize, DataTypes) {
     goal: {
       type:DataTypes.STRING,
       validate: {
-        isAlpha: true,
         isIn: [["Lose Weight", "Gain", "Recomp"]]
       }
     },
