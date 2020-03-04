@@ -37,14 +37,12 @@ module.exports = function(app) {
 
   app.get("/activity-maint/:id", function (req,res){
     db.Activity_Category.findAll ().then(function (cat){
-      //console.log(cat);
       if (req.params.id===0 || typeof req.params.id == "undefined"){
         res.render("activity-maint", { catList: cat, actList: [] });
       } else {
         db.Activity.findAll({
           where: { fk_activity_category: req.params.id }
         }).then(function(act) {
-          //console.log(act);
           res.render("activity-maint", { catList: cat, actList: act });
         });
       }
@@ -52,11 +50,33 @@ module.exports = function(app) {
   });
 
   // ********************************************
-  // log page 
+  // Render the user activity log page
   // ********************************************
 
-  app.get("/log", function (req,res){
-    res.render("log");
+  app.get("/log-user-act/:id", function(req, res) {
+    console.log("here i am"); 
+    db.User.findAll ().then(function (dbUser){
+      db.Activity_Category.findAll ().then(function (dbCat){
+        console.log("PARAM ID " + req.params.id);
+        if (req.params.id == 0 || typeof req.params.id === "undefined") {
+          res.render("user-activity-log", {
+            userList: dbUser,
+            catList: dbCat,
+            actList: []
+          });
+        } else {
+          db.Activity.findAll({
+            where: { fk_activity_category: req.params.id }
+          }).then(function(dbAct) {
+            res.render("user-activity-log", { 
+              userList: dbUser,
+              catList: dbCat,
+              actList: dbAct
+            });
+          });
+        }
+      });
+    });
   });
 
   // ********************************************

@@ -35,3 +35,6 @@ p{
 #calc-user, #submit-user, #upsert-user{
   margin-left:4px; 
 }
+ul{
+  padding-left:24px;
+}

@@ -12,5 +12,5 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   });
-  return User_Activity_Log;
+  return User_Activity;
 };
