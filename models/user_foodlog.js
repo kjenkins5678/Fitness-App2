@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('user_foodlog', {
+  var user_foodlog = sequelize.define('user_foodlog', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -59,7 +59,18 @@ module.exports = function(sequelize, DataTypes) {
         key: 'FoodId'
       }
     }
-  }, {
-    tableName: 'user_foodlog'
   });
+
+  user_foodlog.associate = function(models) {
+    // We're saying that a Post should belong to an Author
+    // A Post can't be created without an Author due to the foreign key constraint
+    user_foodlog.belongsTo(models.users, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
+  return user_foodlog;
+
 };

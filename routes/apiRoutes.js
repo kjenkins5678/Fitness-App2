@@ -106,9 +106,19 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/testing", function(req, res) {
-    db.user_activity_log.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+  app.get("/api/testing/:id", function(req, res) {
+    db.users.findAll({
+      where: {id: req.params.id},
+      include: [{
+        model: db.user_activity_log,
+        required: true
+      },
+      {
+        model: db.user_foodlog,
+        required:true
+      }]
+    }).then(function(user) {
+      res.json(user);
     });
   });
 

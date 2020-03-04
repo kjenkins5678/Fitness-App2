@@ -62,8 +62,32 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/log", function (req,res){
-    res.render("log");
+  app.get("/log/:id", function (req,res){
+
+    db.users.findAll({
+      where: {id: req.params.id},
+      include: [{
+        model: db.user_activity_log,
+        required: true
+        // where: {activity_dt: '2020-03-03T10:10:10.000Z'}
+      },
+      {
+        model: db.user_foodlog,
+        required: true
+      }]
+    }).then(function(user) {
+
+
+      res.render("log", {
+        name: user[0].user_name,
+        goal_cal: user[0].calories_per_day,
+        goal_pro: user[0].protein_per_day,
+        goal_fat: user[0].fat_per_day,
+        goal_carb: user[0].carbs_per_day,
+        examples_activity: user[0].user_activity_logs,
+        examples_food: user[0].user_foodlogs
+      })
+    });
   });
 
 

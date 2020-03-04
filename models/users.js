@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('users', {
+  var users = sequelize.define('users', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -67,7 +67,19 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: false
     }
-  }, {
-    tableName: 'users'
   });
+
+  users.associate = function(models) {
+    // Associating users with user_activity_log
+    users.hasMany(models.user_activity_log, {
+      onDelete: "cascade"
+    });
+
+    users.hasMany(models.user_foodlog, {
+      onDelete: "cascade"
+    });
+
+  };
+
+  return users;
 };

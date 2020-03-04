@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('FdNutritionSummary', {
+  var food = sequelize.define('FdNutritionSummary', {
     FoodId: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -51,7 +51,13 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.FLOAT,
       allowNull: false
     }
-  }, {
-    tableName: 'FdNutritionSummary'
   });
+  // food.associate = function(models) {
+  //   // Associating users with user_activity_log
+  //   food.hasMany(models.user_foodlogs, {
+  //     onDelete: "cascade"
+  //   });
+  // };
+
+  return food;
 };
