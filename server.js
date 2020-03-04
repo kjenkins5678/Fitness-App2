@@ -2,6 +2,19 @@ require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
 
+/*exphbs.create({
+  helpers:{
+    if_eq: function(a, b, opts) {
+      if (a === b) {
+        return opts.fn(this);
+      } else {
+        return opts.inverse(this);
+      }
+    }
+  }
+});
+*/
+
 var db = require("./models");
 
 var app = express();
