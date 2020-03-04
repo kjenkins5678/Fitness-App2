@@ -1,0 +1,56 @@
+<div id="home">
+  <div class="container">
+
+    <div class="jumbotron">
+      <h3 class="text-center">Log User Activity</h3>
+      <br>
+    </div> <!--jumbotron-->
+
+    <div class="row">
+
+      <div class="col-2">
+        <h5>Users</h5>
+        <ul id="userList">
+        {{#each userList}}
+        <li>
+          <p>
+          <a href="" class="userLink" data-id="{{id}}">{{user_name}}</a>
+          </p>
+        </li>
+        {{/each}} 
+        </ul>
+      </div> <!-- col-2 -->
+
+      <div class="col-2">
+        <h5>Categories</h5>
+        <ul>
+        {{#each catList}}
+          <li>
+            <p>
+              <a href="/activity-maint/{{id}}" class="catLink" data-id="{{id}}">{{category_name}}</a>
+            </p>
+           </li>
+        {{/each}} 
+        </ul>
+      </div> <!-- col-2-->
+
+      <div class="col-2">
+        <h5>Activities</h5>
+        <ul>
+        {{#each actList}}
+          <li>
+            <p>
+              <a href="/activity-maint/{{id}}" class="actLink" data-id="{{id}}">{{activity_name}}</a>
+            </p>
+           </li>
+        {{/each}} 
+        </ul>
+      </div> <!-- col-2-->
+
+
+    </div> <!-- row -->
+  </div> <!-- container -->
+</div> <!-- home -->
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/user-activity-log.js"></script>

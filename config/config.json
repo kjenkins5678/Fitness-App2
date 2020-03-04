@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "testtest",
+    "password": "Mysql000!",
     "database": "fitness_app2_db", 
     "host": "localhost",
     "dialect": "mysql"
