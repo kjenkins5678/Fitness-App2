@@ -4,12 +4,12 @@ CREATE DATABASE fitness_app2_db;
 
 USE fitness_app2_db;
 
-CREATE TABLE `activity_categories` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `category_name` varchar(255) NOT NULL,
+CREATE TABLE "activity_categories" (
+  "id" int NOT NULL AUTO_INCREMENT,
+  `category_name` varchar (255) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY ('id')
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `activities` (
