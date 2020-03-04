@@ -8,26 +8,9 @@ module.exports = function(app) {
   // ********************************************
 
   app.get("/", function(req, res) {
-    db.User.findAll ().then(function (user){
+    db.users.findAll ().then(function (user){
       //console.log(cat);
       res.render("index", { userList: user });
-    });
-  });
-
-/*  db.Example.findAll({}).then(function(dbExamples) {
-    res.render("index", {
-      msg: "random text from htmlRoutes.js",
-      examples: dbExamples
-    });
-  });
-*/
-  // ********************************************
-  // Load example page and pass in an example by id
-  // ********************************************
-
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.render("example", {});
     });
   });
 
@@ -36,11 +19,11 @@ module.exports = function(app) {
   // ********************************************
 
   app.get("/activity-maint/:id", function (req,res){
-    db.Activity_Category.findAll ().then(function (cat){
+    db.activity_categories.findAll ().then(function (cat){
       if (req.params.id===0 || typeof req.params.id == "undefined"){
         res.render("activity-maint", { catList: cat, actList: [] });
       } else {
-        db.Activity.findAll({
+        db.activities.findAll({
           where: { fk_activity_category: req.params.id }
         }).then(function(act) {
           res.render("activity-maint", { catList: cat, actList: act });
@@ -55,8 +38,8 @@ module.exports = function(app) {
 
   app.get("/log-user-act/:id", function(req, res) {
     console.log("here i am"); 
-    db.User.findAll ().then(function (dbUser){
-      db.Activity_Category.findAll ().then(function (dbCat){
+    db.users.findAll ().then(function (dbUser){
+      db.activity_categories.findAll ().then(function (dbCat){
         console.log("PARAM ID " + req.params.id);
         if (req.params.id == 0 || typeof req.params.id === "undefined") {
           res.render("user-activity-log", {
@@ -65,7 +48,7 @@ module.exports = function(app) {
             actList: []
           });
         } else {
-          db.Activity.findAll({
+          db.activities.findAll({
             where: { fk_activity_category: req.params.id }
           }).then(function(dbAct) {
             res.render("user-activity-log", { 
