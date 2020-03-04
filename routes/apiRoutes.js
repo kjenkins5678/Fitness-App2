@@ -3,44 +3,19 @@ var db = require("../models");
 module.exports = function(app) {
 
   // ********************************************
-  // boilerplate example stuff 
-  // ********************************************
-
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
-    });
-  });
-
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
-
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
-
-  // ********************************************
   // activity categories 
   // ********************************************
 
   app.post("/api/newCat", function(req, res){
     //console.log("new cat ");
-    db.Activity_Category.create(req.body).then(function(dbCat){
+    db.activity_categories.create(req.body).then(function(dbCat){
       res.json(dbCat);
     });
   });
 
   app.delete("/api/delCat/:id", function(req, res) {
     //console.log("cat del");
-    db.Activity_Category.destroy({
+    db.activity_categories.destroy({
       where: {
         id: req.params.id
       }
@@ -55,7 +30,7 @@ module.exports = function(app) {
 
   app.post("/api/newActivity", function(req, res){
     //console.log("new cat ");
-    db.Activity.create(req.body).then(function(dbCat){
+    db.activities.create(req.body).then(function(dbCat){
       res.json(dbCat);
     });
   });
@@ -65,7 +40,7 @@ module.exports = function(app) {
     console.log("updActivity\n" + req.body.activity_name);
     console.log("updActivity\n" + req.params.id);
 
-    db.Activity.update({
+    db.activities.update({
       activity_name: req.body.activity_name,
       met: req.body.met
     }, {
@@ -80,7 +55,7 @@ module.exports = function(app) {
 
   app.delete("/api/delActivity/:id", function(req, res) {
     //console.log("cat del");
-    db.Activity.destroy({
+    db.activities.destroy({
       where: {
         id: req.params.id
       }
@@ -95,7 +70,7 @@ module.exports = function(app) {
 
   // find by ID
   app.get("/api/getUser/:id", function(req, res) {
-    db.User.findAll({
+    db.users.findAll({
       where: { id: req.params.id }
     }).then(function(dbUser) {
       //console.log(act);
@@ -105,7 +80,7 @@ module.exports = function(app) {
 
   // find by name
   app.get("/api/getUserName/:id", function(req, res) {
-    db.User.findAll({
+    db.users.findAll({
       where: { user_name: req.params.id }
     }).then(function(dbUser) {
       res.json(dbUser);
@@ -114,7 +89,7 @@ module.exports = function(app) {
 
   // insert
   app.post("/api/newUser", function(req, res) {
-    db.User.create(req.body).then(function(dbUser){
+    db.users.create(req.body).then(function(dbUser){
       res.json(dbUser);
     });
   });
@@ -122,12 +97,28 @@ module.exports = function(app) {
   // update
   app.post("/api/updUser", function(req, res) {
     console.log("ENTERING /API/UPDUSER");
-    db.User.update(req.body, {
+    db.users.update(req.body, {
       where: {
         id: req.body.id
       }
     }).then(function(dbUser) {
       res.json(dbUser);
+    });
+  });
+
+  app.get("/api/testing/:id", function(req, res) {
+    db.users.findAll({
+      where: {id: req.params.id},
+      include: [{
+        model: db.user_activity_log,
+        required: true
+      },
+      {
+        model: db.user_foodlog,
+        required:true
+      }]
+    }).then(function(user) {
+      res.json(user);
     });
   });
 

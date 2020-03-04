@@ -18,7 +18,7 @@ CREATE TABLE `activities` (
   `met` int NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  `fk_activity_category` int NOT NULL,
+  `fk_activity_category` int,
   PRIMARY KEY (`id`),
   KEY `fk_activity_category` (`fk_activity_category`),
   CONSTRAINT `activities_ibfk_1` FOREIGN KEY (`fk_activity_category`) REFERENCES `activity_categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
@@ -76,7 +76,7 @@ CREATE TABLE FdNutritionSummary (
   Fat float not null,
   Carbohydrates float not null,
   PRIMARY KEY (FoodId)
-) 
+);
 
 CREATE TABLE `user_foodlogs` (
   `id` int NOT NULL AUTO_INCREMENT,
