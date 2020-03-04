@@ -79,6 +79,11 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/log", function (req,res){
+    res.render("log");
+  });
+
+
   // ********************************************
   // Render 404 page for any unmatched routes
   // ********************************************
