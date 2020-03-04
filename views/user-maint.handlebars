@@ -1,0 +1,147 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <a class="navbar-brand" href="/">Fitness App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="/activity-maint/0">Activity Maintenance</a>
+      <a class="nav-item nav-link" href="/log-user-act/0">Log User Activity</a>
+      <a class="nav-item nav-link" href="#">Some Page 2</a>
+    </div>
+  </div>
+</nav>
+
+<div id="home">
+  <div class="container">
+
+    <div class="jumbotron">
+      <h3 class="text-center">User Maintenance</h3>
+      <br>
+    </div> <!--jumbotron-->
+
+    <div class="row">
+      <div class="col-4">
+
+        <h5>Users</h5>
+
+        <button id="submit-user" class="btn btn-primary float-right">Submit</button>
+        <form class="clearfix mb-4" action="POST">
+          <div class="form-group">
+            <input type="text" class="form-control" id="new-user-name" placeholder="Enter New User"></input>
+          </div>
+        </form>
+        <hr>
+
+        <ul id="userList">
+        {{#each userList}}
+        <li>
+          <p>
+          <a href="" class="userLink" data-id="{{id}}">{{user_name}}</a>
+          <button class="btn btn-danger btn-sm float-right delete-cat" data-id="{{id}}">ｘ</button> <!---->
+          </p>
+        </li>
+        {{/each}} 
+        </ul>
+
+      </div> <!-- home -->
+
+      <div class="col-7 offset-1">
+
+        <h5 id="goalsH5">Goals</h5>
+        <button id="upsert-user" class="btn btn-primary float-right">Save</button>
+        <button id="calc-user" class="btn btn-primary float-right">Calculate</button>
+        <br><br><br>
+
+        <form>
+
+          <!-- basic attributes, name, etc.-->  
+          <div class="row">
+            <div class="col-3">
+              <p ><strong>Name</strong></p>
+              <input type="text" class="form-control" id="user-name" placeholder="Name"></input>
+            </div> 
+            <div class="col-3">
+              <p ><strong>Age</strong></p>
+              <input type="text" class="form-control" id="age" placeholder="Age"></input>
+            </div> 
+            <div class="col-3">
+              <p ><strong>Height (inches)</strong></p>
+              <input type="text" class="form-control" id="height-in" placeholder="Height (inches)"></input>
+            </div> 
+            <div class="col-3">
+              <p ><strong>Weight (pounds)</strong></p>
+              <input type="text" class="form-control" id="weight-lb" placeholder="Weight (pounds)"></input>
+            </div> 
+          </div>
+
+          <br>
+
+          <!-- goals -->  
+          <div class="row">
+            <div class="col-3">
+              <!--<input type="text" class="form-control" id="gender" placeholder="Gender"></input>-->
+              <label for="gender"><strong>Gender:</strong></label>
+              <select class="form-control" id="gender">
+                <option>Female</option>
+                <option>Male</option>
+              </select>
+            </div> 
+
+            <div class="col-3">
+              <!--<input type="text" class="form-control" id="activity-level" placeholder="Activity Level"></input>-->
+              <label for="activity-level"><strong>Activity Level:</strong></label>
+              <select class="form-control" id="activity-level">
+                  <option>Sedentary</option>
+                  <option>Moderate</option>
+                  <option>Vigorous</option>
+              </select>
+            </div>
+
+            <div class="col-3">
+              <!--<input type="text" class="form-control" id="goal" placeholder="Goal"></input>-->
+              <label for="goal"><strong>Goal:</strong></label>
+              <select class="form-control" id="goal">
+                  <option>Lose Weight</option>
+                  <option>Gain</option>
+                  <option>Recomp</option>
+              </select>
+            </div> 
+          </div>
+
+          <br><br><br>
+
+          <!-- targets -->  
+          <div class="row">
+            <div class="col-3">
+              <p ><strong>Calories Per Day</strong></p>
+              <p id="cals-per-day"></p>
+            </div> 
+            <div class="col-3">
+              <p ><strong>Fat Per Day</strong></p>
+              <p id="fat-per-day"></p>
+            </div> 
+            <div class="col-3">
+              <p ><strong>Carbs Per Day</strong></p>
+              <p id="carbs-per-day"></p>
+            </div> 
+            <div class="col-3">
+              <p ><strong>Protein Per Day</strong></p>
+              <p id="protein-per-day"></p>
+            </div> 
+            <div class="col-3">
+            </div> 
+          </div>
+
+<!-- height_cm, weight_kg, , fat_per_day, carbs_per_day, protein_per_day
+--> 
+
+        </form>
+      </div>
+    </div> <!-- home -->
+  </div> <!-- home -->
+</div> <!-- home -->
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>

@@ -8,11 +8,23 @@ module.exports = function(app) {
   // ********************************************
 
   app.get("/", function(req, res) {
-    db.User.findAll ().then(function (user){
-      //console.log(cat);
-      res.render("index", { userList: user });
-    });
+    res.render("index");
   });
+
+  app.get('/logpage', function(req, res) {
+    res.render('logpage');
+  });
+
+  app.get('/signpage', function(req, res) {
+    res.render('signpage');
+  });
+
+  // app.get("/", function(req, res) {
+  //   db.User.findAll ().then(function (user){
+  //     //console.log(cat);
+  //     res.render("index", { userList: user });
+  //   });
+  // });
 
 /*  db.Example.findAll({}).then(function(dbExamples) {
     res.render("index", {
