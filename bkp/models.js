@@ -7,30 +7,30 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-len: [1, 140]
+        len: [1, 140]
       }
-}
-});
+    }
+  });
 
-// **********************************************
-// **********************************************
+  // **********************************************
+  // **********************************************
 
-   var Activity = sequelize.define("Activity", {
-      activity_name: {
-         type: DataTypes.STRING,
-         allowNull: false,
-         validate: {
-            len: [1, 140]
-         }
-      },
-      met: {
-         type: DataTypes.INTEGER,
-         allowNull: false,
-         validate: {
-            isNumeric: true
-         }
+  var Activity = sequelize.define("Activity", {
+    activity_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 140]
       }
-   });
+    },
+    met: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        isNumeric: true
+      }
+    }
+  });
 
 //    var User = sequelize.define("User", {
 //       user_name: {
