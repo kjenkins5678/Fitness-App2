@@ -1,8 +1,9 @@
 // **********************************************
 // **********************************************
 
-module.exports = function(sequelize, DataTypes) {
+module.default function(sequelize, DataTypes) {
   var Activity = sequelize.define("Activity", {
+    // eslint-disable-next-line camelcase
     activity_name: {
       type: DataTypes.STRING,
       allowNull: false,
