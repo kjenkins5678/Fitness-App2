@@ -148,6 +148,16 @@ app.post("/api/newFood", function(req, res) {
       res.json(dbCat);
     });
 });
+  // ********************************************
+  // user activity
+  // ********************************************
+
+  app.post("/api/newUserActivity", function(req, res){
+    //console.log("new cat ");
+    db.user_activity_log.create(req.body).then(function(dbUA){
+      res.json(dbUA);
+    });
+  });
 };
 // app.post("/api/newFood", function (req, res) {
 
