@@ -32,7 +32,7 @@ p{
 #new-met{
   width: 140px;
 }
-#calc-user, #submit-user, #upsert-user{
+#calc-user, #submit-user, #upsert-user, #submit-user-act{
   margin-left:4px; 
 }
 ul{
@@ -51,4 +51,7 @@ ul{
 #first_login {
   text-align: center;
   margin: 0 auto;
+  
+.hidden{
+  display:none;
 }

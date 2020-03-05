@@ -51,10 +51,7 @@ deleteCatButton.on("click", function() {
 
 newActButton.on("click", function() {
   event.preventDefault();
-  //console.log("new activity selected cat " + 
-  //  window.location.href.substring(window.location.href.lastIndexOf('/')+1));
   var catID = window.location.href.substring(window.location.href.lastIndexOf('/')+1); 
-  console.log("new activity selected cat " + catID);
 
   var newAct = newActElem.val().trim();
   var newMet = newMetElem.val().trim();

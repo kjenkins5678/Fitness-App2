@@ -28,7 +28,17 @@ module.exports = function (app) {
   // activities
   // ********************************************
 
-  app.post("/api/newActivity", function (req, res) {
+  app.get("/api/getActivitiesByCategory/:id", function(req, res) {
+    console.log("GET ACTIVITIES BY ID " + req.params.id)
+    db.activities.findAll({
+      where: { fk_activity_category: req.params.id }
+    })
+      .then(function(dbAct) {
+        res.json(dbAct);
+      });
+  });
+
+  app.post("/api/newActivity", function(req, res){
     //console.log("new cat ");
     db.activities.create(req.body).then(function(dbCat){
       res.json(dbCat);
@@ -101,22 +111,24 @@ module.exports = function (app) {
       where: {
         id: req.body.id
       }
-    }).then(function(dbUser) {
-      res.json(dbUser);
-    });
+    })
+      .then(function(dbUser) {
+        res.json(dbUser);
+      });
   });
 
   app.get("/api/testing/:id", function(req, res) {
     db.users.findAll({
-      where: {id: req.params.id},
-      include: [{
-        model: db.user_activity_log,
-        required: true
-      },
-      {
-        model: db.user_foodlog,
-        required:true
-      }]
+      where: { id: req.params.id },
+      include: [
+        {
+          model: db.user_activity_log,
+          required: true
+        },
+        {
+          model: db.user_foodlog,
+          required:true
+        }]
     }).then(function(user) {
       res.json(user);
     });

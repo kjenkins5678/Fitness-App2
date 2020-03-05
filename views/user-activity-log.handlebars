@@ -38,11 +38,11 @@
 
       <div class="col-2">
         <h5>Categories</h5>
-        <ul>
+        <ul id="catList">
         {{#each catList}}
           <li>
             <p>
-              <a href="/activity-maint/{{id}}" class="catLink" data-id="{{id}}">{{category_name}}</a>
+              <a href="" class="catLink" data-id="{{id}}">{{category_name}}</a>
             </p>
            </li>
         {{/each}} 
@@ -51,17 +51,36 @@
 
       <div class="col-2">
         <h5>Activities</h5>
-        <ul>
+        <ul id="actList">
         {{#each actList}}
           <li>
             <p>
-              <a href="/activity-maint/{{id}}" class="actLink" data-id="{{id}}">{{activity_name}}</a>
+              <a href="" class="actLink" data-id="{{id}}">{{activity_name}}</a>
             </p>
            </li>
         {{/each}} 
         </ul>
       </div> <!-- col-2-->
 
+      <div class="col-6">
+        <div class="row">
+          <h5 id="activity-entry-header">Log Activity</h5>
+          <p class="hidden" id="hidden_user_id" data-id=""></p>
+          <p class="hidden" id="hidden_cat_id" data-id=""></p>
+          <p class="hidden" id="hidden_act_id" data-id=""></p>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="form-group">
+            <label for="duration-input">Select Duration:</label>
+            <input type="text" id="duration-input" placeholder="hh:mm, :mm">
+            <button id="submit-user-act" class="btn btn-primary float-right">Submit</button>
+          </div>
+        </div>
+
+      </div>
 
     </div> <!-- row -->
   </div> <!-- container -->
