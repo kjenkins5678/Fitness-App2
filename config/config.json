@@ -1,6 +1,7 @@
 {
   "development": {
     "username": "root",
+    "port": "3306",
     "password": "admin",
     "database": "fitness_app2_db", 
     "host": "localhost",
