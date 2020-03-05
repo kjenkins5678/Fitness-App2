@@ -1,25 +1,25 @@
 var db = require("../models");
 
-module.exports = function(app) {
+module.exports = function (app) {
 
   // ********************************************
   // activity categories 
   // ********************************************
 
-  app.post("/api/newCat", function(req, res){
+  app.post("/api/newCat", function (req, res) {
     //console.log("new cat ");
     db.activity_categories.create(req.body).then(function(dbCat){
       res.json(dbCat);
     });
   });
 
-  app.delete("/api/delCat/:id", function(req, res) {
+  app.delete("/api/delCat/:id", function (req, res) {
     //console.log("cat del");
     db.activity_categories.destroy({
       where: {
         id: req.params.id
       }
-    }).then(function(dbCat) {
+    }).then(function (dbCat) {
       res.json(dbCat);
     });
   });
@@ -28,14 +28,14 @@ module.exports = function(app) {
   // activities
   // ********************************************
 
-  app.post("/api/newActivity", function(req, res){
+  app.post("/api/newActivity", function (req, res) {
     //console.log("new cat ");
     db.activities.create(req.body).then(function(dbCat){
       res.json(dbCat);
     });
   });
 
-  app.post("/api/updActivity/:id", function(req, res) {
+  app.post("/api/updActivity/:id", function (req, res) {
 
     console.log("updActivity\n" + req.body.activity_name);
     console.log("updActivity\n" + req.params.id);
@@ -47,19 +47,19 @@ module.exports = function(app) {
       where: {
         id: req.params.id
       }
-    }).then(function(dbAct) {
+    }).then(function (dbAct) {
       res.json(dbAct);
     });
 
   });
 
-  app.delete("/api/delActivity/:id", function(req, res) {
+  app.delete("/api/delActivity/:id", function (req, res) {
     //console.log("cat del");
     db.activities.destroy({
       where: {
         id: req.params.id
       }
-    }).then(function(dbCat) {
+    }).then(function (dbCat) {
       res.json(dbCat);
     });
   });
@@ -72,7 +72,7 @@ module.exports = function(app) {
   app.get("/api/getUser/:id", function(req, res) {
     db.users.findAll({
       where: { id: req.params.id }
-    }).then(function(dbUser) {
+    }).then(function (dbUser) {
       //console.log(act);
       res.json(dbUser);
     });
@@ -122,4 +122,52 @@ module.exports = function(app) {
     });
   });
 
+// ********************************************
+// food
+// ********************************************
+// app.post("/api/newFood", function(req, res){
+//   console.log("new food ");
+//    db.Food.create(req.body).then(function(dbCat){
+//    res.json(dbCat);
+//    });
+//  });
+app.post("/api/newFood", function(req, res) {
+    db.fdnutritionsummary.create(req.body).then(function(dbCat) {
+      res.json(dbCat);
+    });
+});
 };
+// app.post("/api/newFood", function (req, res) {
+
+//   db.Food.create(req.body).then(function (dbCat) {
+//     res.json(dbCat);
+//   });
+// });
+  // app.post("/api/updFoodName/:id", function(req, res) {
+
+  //   console.log("updFoodName\n" + req.body.food_name);
+  //   console.log("updFoodName\n" + req.params.id);
+
+  //   db.Food.update({
+  //     fdname: req.body.fdname,
+  //     calories: req.body.calories
+  //   }, {
+  //     where: {
+  //       foodid: req.params.id
+  //     }
+  //   }).then(function(dbFood) {
+  //     res.json(dbFood);
+  //   });
+
+  // });
+
+  // app.delete("/api/delFoodName/:id", function(req, res) {
+  //   //console.log("cat del");
+  //   db.Food.destroy({
+  //     where: {
+  //       foodid: req.params.id
+  //     }
+  //   }).then(function(dbFood) {
+  //     res.json(dbFood);
+  //   });
+  // });
