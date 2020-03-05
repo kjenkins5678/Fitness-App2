@@ -35,3 +35,20 @@ p{
 #calc-user, #submit-user, #upsert-user{
   margin-left:4px; 
 }
+ul{
+  padding-left:24px;
+}
+
+#first_page_main {
+  margin: 0 auto;
+}
+
+#first_desc {
+  text-align: center;
+  margin: 0 auto;
+}
+
+#first_login {
+  text-align: center;
+  margin: 0 auto;
+}

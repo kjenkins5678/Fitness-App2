@@ -1,5 +1,4 @@
 var db = require("../models");
-var path = require("path");
 
 module.exports = function(app) {
 
@@ -8,11 +7,23 @@ module.exports = function(app) {
   // ********************************************
 
   app.get("/", function(req, res) {
-    db.User.findAll ().then(function (user){
-      //console.log(cat);
-      res.render("index", { userList: user });
-    });
+    res.render("index");
   });
+
+  app.get('/logpage', function(req, res) {
+    res.render('logpage');
+  });
+
+  app.get('/signpage', function(req, res) {
+    res.render('signpage');
+  });
+
+  // app.get("/", function(req, res) {
+  //   db.User.findAll ().then(function (user){
+  //     //console.log(cat);
+  //     res.render("index", { userList: user });
+  //   });
+  // });
 
 /*  db.Example.findAll({}).then(function(dbExamples) {
     res.render("index", {
@@ -36,15 +47,13 @@ module.exports = function(app) {
   // ********************************************
 
   app.get("/activity-maint/:id", function (req,res){
-    db.Activity_Category.findAll ().then(function (cat){
-      //console.log(cat);
+    db.activity_categories.findAll ().then(function (cat){
       if (req.params.id===0 || typeof req.params.id == "undefined"){
         res.render("activity-maint", { catList: cat, actList: [] });
       } else {
-        db.Activity.findAll({
+        db.activities.findAll({
           where: { fk_activity_category: req.params.id }
         }).then(function(act) {
-          //console.log(act);
           res.render("activity-maint", { catList: cat, actList: act });
         });
       }
@@ -68,6 +77,65 @@ module.exports = function(app) {
   app.get("/log", function (req,res){
     res.render("log");
   });
+
+  // ********************************************
+  // Render the user activity log page
+  // ********************************************
+
+  app.get("/log-user-act/:id", function(req, res) {
+    console.log("here i am"); 
+    db.users.findAll ().then(function (dbUser){
+      db.activity_categories.findAll ().then(function (dbCat){
+        console.log("PARAM ID " + req.params.id);
+        if (req.params.id == 0 || typeof req.params.id === "undefined") {
+          res.render("user-activity-log", {
+            userList: dbUser,
+            catList: dbCat,
+            actList: []
+          });
+        } else {
+          db.activities.findAll({
+            where: { fk_activity_category: req.params.id }
+          }).then(function(dbAct) {
+            res.render("user-activity-log", { 
+              userList: dbUser,
+              catList: dbCat,
+              actList: dbAct
+            });
+          });
+        }
+      });
+    });
+  });
+
+  app.get("/log/:id", function (req,res){
+
+    db.users.findAll({
+      where: {id: req.params.id},
+      include: [{
+        model: db.user_activity_log,
+        required: true
+        // where: {activity_dt: '2020-03-03T10:10:10.000Z'}
+      },
+      {
+        model: db.user_foodlog,
+        required: true
+      }]
+    }).then(function(user) {
+
+
+      res.render("log", {
+        name: user[0].user_name,
+        goal_cal: user[0].calories_per_day,
+        goal_pro: user[0].protein_per_day,
+        goal_fat: user[0].fat_per_day,
+        goal_carb: user[0].carbs_per_day,
+        examples_activity: user[0].user_activity_logs,
+        examples_food: user[0].user_foodlogs
+      })
+    });
+  });
+
 
   // ********************************************
   // Render 404 page for any unmatched routes

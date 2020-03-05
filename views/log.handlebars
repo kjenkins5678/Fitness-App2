@@ -1,13 +1,18 @@
 <div class="container">
     <div class="row">
         <div class="col">
+<<<<<<< HEAD
             <h2>Someone's Fitness Log</h2>
+=======
+            <h2>{{name}}'s Fitness Log</h2>
+>>>>>>> 231bf8901cf7068031a65132742a7a7a3acff5c8
         </div>
         <div class="col">
             <button type="button" class="btn btn-primary float-right mx-2">Log Food</button>
             <button type="button" class="btn btn-primary float-right mx-2">Log Activity</button>
         </div>
     </div>
+<<<<<<< HEAD
     {{!-- This iterates --}}
     <div class="row">
         <div class="card col-12">
@@ -29,4 +34,26 @@
             </div>
         </div>
     </div>
+=======
+
+    <div class="row">
+        <div class="card">
+            <h3>Targets</h3>
+            <p>Calorie Goal: {{goal_cal}}, Protein Goal: {{goal_pro}}, Fat Goal: {{goal_fat}}, Carb Goal: {{goal_carb}} </p>
+        </div>
+    </div>
+
+    {{#each examples_activity}}
+        <li data-id="{{this.id}}" class="list-group-item">
+        <p> Date: {{this.activity_dt}}, Activity: {{this.fk_activity}}, Duration: {{this.duration}}, Calories Burned: {{this.calories_per_activity}}</p>
+        </li>
+    {{/each}}
+
+    {{#each examples_food}}
+        <li data-id="{{this.id}}" class="list-group-item">
+        <p> Date: {{this.FoodConsume_dt}}, Food: {{this.FoodId}}</p>
+        </li>
+    {{/each}}
+
+>>>>>>> 231bf8901cf7068031a65132742a7a7a3acff5c8
 </div>

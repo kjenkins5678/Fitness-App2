@@ -3,6 +3,7 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Activity = sequelize.define("Activity", {
+    // eslint-disable-next-line camelcase
     activity_name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -11,13 +12,6 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     met: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        isNumeric: true
-      }
-    },
-    fk_activity_category: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {

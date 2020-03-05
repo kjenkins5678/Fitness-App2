@@ -4,12 +4,12 @@ CREATE DATABASE fitness_app2_db;
 
 USE fitness_app2_db;
 
-CREATE TABLE `activity_categories` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `category_name` varchar(255) NOT NULL,
+CREATE TABLE "activity_categories" (
+  "id" int NOT NULL AUTO_INCREMENT,
+  `category_name` varchar (255) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY ('id')
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `activities` (
@@ -18,7 +18,7 @@ CREATE TABLE `activities` (
   `met` int NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  `fk_activity_category` int NOT NULL,
+  `fk_activity_category` int,
   PRIMARY KEY (`id`),
   KEY `fk_activity_category` (`fk_activity_category`),
   CONSTRAINT `activities_ibfk_1` FOREIGN KEY (`fk_activity_category`) REFERENCES `activity_categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
@@ -27,6 +27,7 @@ CREATE TABLE `activities` (
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `age` int NOT NULL,
   `height_inches` int NOT NULL,
   `height_cm` decimal(10,0) DEFAULT NULL,
@@ -44,7 +45,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `user_activity_log` (
+CREATE TABLE `user_activity_logs` (
   `id` int NOT NULL AUTO_INCREMENT,
   `activity_dt` datetime NOT NULL,
   `duration` int NOT NULL,
@@ -54,6 +55,7 @@ CREATE TABLE `user_activity_log` (
   `updatedAt` datetime NOT NULL,
   `fk_user` int, 
   `fk_activity` int, 
+  `userId` int, 
   PRIMARY KEY (`id`),
   KEY `fk_user` (`fk_user`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`fk_user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE, 
@@ -75,7 +77,28 @@ CREATE TABLE FdNutritionSummary (
   Fat float not null,
   Carbohydrates float not null,
   PRIMARY KEY (FoodId)
-) 
+);
+
+CREATE TABLE `user_foodlogs` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `FoodId` int NOT NULL,
+  `FoodConsume_dt` datetime NOT NULL,
+  `Amount` float NOT NULL,
+  `Calories` float NOT NULL,
+  `Protein` float NOT NULL,
+  `Fat` float NOT NULL,
+  `Carbohydrates` float NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `fk_user` int NOT NULL,
+  `fk_food` int NOT NULL,
+  `userId` int, 
+  PRIMARY KEY (`id`),
+  KEY `fk_user_idx` (`fk_user`),
+  KEY `fk_food_idx` (`fk_food`),
+  CONSTRAINT `fk_food` FOREIGN KEY (`fk_food`) REFERENCES `fdnutritionsummary` (`FoodId`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_user` FOREIGN KEY (`fk_user`) REFERENCES `users` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `user_foodlog` (
   `id` int NOT NULL AUTO_INCREMENT,
