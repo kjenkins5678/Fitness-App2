@@ -7,9 +7,38 @@ module.exports = function(app) {
   // ********************************************
 
   app.get("/", function(req, res) {
-    db.users.findAll ().then(function (user){
-      //console.log(cat);
-      res.render("index", { userList: user });
+    res.render("index");
+  });
+
+  app.get('/logpage', function(req, res) {
+    res.render('logpage');
+  });
+
+  app.get('/signpage', function(req, res) {
+    res.render('signpage');
+  });
+
+  // app.get("/", function(req, res) {
+  //   db.User.findAll ().then(function (user){
+  //     //console.log(cat);
+  //     res.render("index", { userList: user });
+  //   });
+  // });
+
+/*  db.Example.findAll({}).then(function(dbExamples) {
+    res.render("index", {
+      msg: "random text from htmlRoutes.js",
+      examples: dbExamples
+    });
+  });
+*/
+  // ********************************************
+  // Load example page and pass in an example by id
+  // ********************************************
+
+  app.get("/example/:id", function(req, res) {
+    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
+      res.render("example", {});
     });
   });
 

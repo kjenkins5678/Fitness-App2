@@ -1,0 +1,80 @@
+<div id="home">
+  <div class="container">
+
+    <div class="jumbotron">
+      <h3 class="text-center">Sign Up</h3>
+      <br>
+    </div> <!--jumbotron-->
+
+    <div class="row">
+
+        <h5>User</h5>
+
+        <form class="clearfix mb-4" action="POST">
+          <div class="form-group">
+            <input type="text" class="form-control" id="new-user-name" placeholder="Enter New User"></input>
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" id="new-password" placeholder="Enter Password"></input>
+          </div>
+
+          <div class="row"> 
+            <div class="col-3">
+              <p ><strong>Age</strong></p>
+              <input type="text" class="form-control" id="age" placeholder="Age"></input>
+            </div> 
+            <div class="col-3">
+              <p ><strong>Height (inches rounded)</strong></p>
+              <input type="text" class="form-control" id="height-in" placeholder="Height (inches)"></input>
+            </div> 
+            <div class="col-3">
+              <p ><strong>Weight (pounds rounded)</strong></p>
+              <input type="text" class="form-control" id="weight-lb" placeholder="Weight (pounds)"></input>
+            </div> 
+          </div>
+
+          <br>
+
+          <!-- goals -->  
+          <div class="row">
+            <div class="col-3">
+              <!--<input type="text" class="form-control" id="gender" placeholder="Gender"></input>-->
+              <label for="gender"><strong>Gender:</strong></label>
+              <select class="form-control" id="gender">
+                <option>Female</option>
+                <option>Male</option>
+              </select>
+            </div> 
+
+            <div class="col-3">
+              <!--<input type="text" class="form-control" id="activity-level" placeholder="Activity Level"></input>-->
+              <label for="activity-level"><strong>Activity Level:</strong></label>
+              <select class="form-control" id="activity-level">
+                  <option>Sedentary</option>
+                  <option>Moderate</option>
+                  <option>Vigorous</option>
+              </select>
+            </div>
+
+            <div class="col-3">
+              <!--<input type="text" class="form-control" id="goal" placeholder="Goal"></input>-->
+              <label for="goal"><strong>Goal:</strong></label>
+              <select class="form-control" id="goal">
+                  <option>Lose Weight</option>
+                  <option>Gain</option>
+                  <option>Recomp</option>
+              </select>
+            </div> 
+        </form>
+
+    </div> <!-- home -->
+
+    <div id="submit-row" class="row">
+        <button id="new_user_submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div> <!-- home -->
+</div> <!-- home -->
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/signpage.js"></script>
