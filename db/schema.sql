@@ -27,6 +27,7 @@ CREATE TABLE `activities` (
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `age` int NOT NULL,
   `height_inches` int NOT NULL,
   `height_cm` decimal(10,0) DEFAULT NULL,
