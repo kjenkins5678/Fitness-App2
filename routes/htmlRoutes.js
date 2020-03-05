@@ -50,6 +50,24 @@ module.exports = function(app) {
       }
     });
   });
+  // ********************************************
+  // open the nutrition maintenance page 
+  // ********************************************
+
+  app.get("/nutrition-maint/:foodid", function (req,res){
+    db.fdnutritionsummary.findAll ().then(function (dlist){
+      //console.log(cat);{
+        res.render("nutrition-maint", { foodDescList: dlist });
+    });
+  });
+
+  // ********************************************
+  // log page 
+  // ********************************************
+
+  app.get("/log", function (req,res){
+    res.render("log");
+  });
 
   // ********************************************
   // Render 404 page for any unmatched routes

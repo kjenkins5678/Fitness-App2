@@ -32,6 +32,6 @@ p{
 #new-met{
   width: 140px;
 }
-#calc-user, #submit-user{
+#calc-user, #submit-user, #upsert-user{
   margin-left:4px; 
 }
