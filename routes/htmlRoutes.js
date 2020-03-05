@@ -1,5 +1,4 @@
 var db = require("../models");
-var path = require("path");
 
 module.exports = function(app) {
 
@@ -14,9 +13,18 @@ module.exports = function(app) {
     });
   });
 
+<<<<<<< HEAD
   // ********************************************
   // open the activity maintenance page 
   // ********************************************
+=======
+  // Load example page and pass in an example by id
+  app.get("/example/:id", function(req, res) {
+    db.Example.findOne({ where: { id: req.params.id } }).then(function() {
+      res.render("example", {});
+    });
+  });
+>>>>>>> f2d5c6df789455189e1ca0b697c4c8c8a19c1ba4
 
   app.get("/activity-maint/:id", function (req,res){
     db.activity_categories.findAll ().then(function (cat){
