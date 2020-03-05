@@ -18,7 +18,7 @@ CREATE TABLE `activities` (
   `met` int NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  `fk_activity_category` int NOT NULL,
+  `fk_activity_category` int,
   PRIMARY KEY (`id`),
   KEY `fk_activity_category` (`fk_activity_category`),
   CONSTRAINT `activities_ibfk_1` FOREIGN KEY (`fk_activity_category`) REFERENCES `activity_categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
@@ -45,7 +45,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `user_activity_log` (
+CREATE TABLE `user_activity_logs` (
   `id` int NOT NULL AUTO_INCREMENT,
   `activity_dt` datetime NOT NULL,
   `duration` int NOT NULL,
@@ -55,6 +55,7 @@ CREATE TABLE `user_activity_log` (
   `updatedAt` datetime NOT NULL,
   `fk_user` int, 
   `fk_activity` int, 
+  `userId` int, 
   PRIMARY KEY (`id`),
   KEY `fk_user` (`fk_user`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`fk_user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE, 
@@ -76,9 +77,9 @@ CREATE TABLE FdNutritionSummary (
   Fat float not null,
   Carbohydrates float not null,
   PRIMARY KEY (FoodId)
-); 
+);
 
-CREATE TABLE `user_foodlog` (
+CREATE TABLE `user_foodlogs` (
   `id` int NOT NULL AUTO_INCREMENT,
   `FoodId` int NOT NULL,
   `FoodConsume_dt` datetime NOT NULL,
@@ -91,6 +92,7 @@ CREATE TABLE `user_foodlog` (
   `updatedAt` datetime NOT NULL,
   `fk_user` int NOT NULL,
   `fk_food` int NOT NULL,
+  `userId` int, 
   PRIMARY KEY (`id`),
   KEY `fk_user_idx` (`fk_user`),
   KEY `fk_food_idx` (`fk_food`),
