@@ -38,3 +38,17 @@ p{
 ul{
   padding-left:24px;
 }
+
+#first_page_main {
+  margin: 0 auto;
+}
+
+#first_desc {
+  text-align: center;
+  margin: 0 auto;
+}
+
+#first_login {
+  text-align: center;
+  margin: 0 auto;
+}
