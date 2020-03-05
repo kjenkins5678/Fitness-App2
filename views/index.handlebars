@@ -6,125 +6,6 @@
       <br>
     </div> <!--jumbotron-->
 
-<<<<<<< HEAD
-    <div class="row">
-      <div class="col-4">
-
-        <h5>Users</h5>
-
-        <button id="submit-user" class="btn btn-primary float-right">Submit</button>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <input type="text" class="form-control" id="new-user-name" placeholder="Enter New User"></input>
-          </div>
-        </form>
-        <hr>
-
-        <ul id="userList">
-        {{#each userList}}
-        <li>
-          <p>
-          <a href="" class="userLink" data-id="{{id}}">{{user_name}}</a>
-          <button class="btn btn-danger btn-sm float-right delete-cat" data-id="{{id}}">ｘ</button> <!---->
-          </p>
-        </li>
-        {{/each}} 
-        </ul>
-
-      </div> <!-- home -->
-
-      <div class="col-7 offset-1">
-
-        <h5 id="goalsH5">Goals</h5>
-        <button id="upsert-user" class="btn btn-primary float-right">Save</button>
-        <button id="calc-user" class="btn btn-primary float-right">Calculate</button>
-        <br><br><br>
-
-        <form>
-
-          <!-- basic attributes, name, etc.-->  
-          <div class="row">
-            <div class="col-3">
-              <p ><strong>Name</strong></p>
-              <input type="text" class="form-control" id="user-name" placeholder="Name"></input>
-            </div> 
-            <div class="col-3">
-              <p ><strong>Age</strong></p>
-              <input type="text" class="form-control" id="age" placeholder="Age"></input>
-            </div> 
-            <div class="col-3">
-              <p ><strong>Height (inches)</strong></p>
-              <input type="text" class="form-control" id="height-in" placeholder="Height (inches)"></input>
-            </div> 
-            <div class="col-3">
-              <p ><strong>Weight (pounds)</strong></p>
-              <input type="text" class="form-control" id="weight-lb" placeholder="Weight (pounds)"></input>
-            </div> 
-          </div>
-
-          <br>
-
-          <!-- goals -->  
-          <div class="row">
-            <div class="col-3">
-              <!--<input type="text" class="form-control" id="gender" placeholder="Gender"></input>-->
-              <label for="gender"><strong>Gender:</strong></label>
-              <select class="form-control" id="gender">
-                <option>Female</option>
-                <option>Male</option>
-              </select>
-            </div> 
-
-            <div class="col-3">
-              <!--<input type="text" class="form-control" id="activity-level" placeholder="Activity Level"></input>-->
-              <label for="activity-level"><strong>Activity Level:</strong></label>
-              <select class="form-control" id="activity-level">
-                  <option>Sedentary</option>
-                  <option>Moderate</option>
-                  <option>Vigorous</option>
-              </select>
-            </div>
-
-            <div class="col-3">
-              <!--<input type="text" class="form-control" id="goal" placeholder="Goal"></input>-->
-              <label for="goal"><strong>Goal:</strong></label>
-              <select class="form-control" id="goal">
-                  <option>Lose Weight</option>
-                  <option>Gain</option>
-                  <option>Recomp</option>
-              </select>
-            </div> 
-          </div>
-
-          <br><br><br>
-
-          <!-- targets -->  
-          <div class="row">
-            <div class="col-3">
-              <p ><strong>Calories Per Day</strong></p>
-              <p id="cals-per-day"></p>
-            </div> 
-            <div class="col-3">
-              <p ><strong>Fat Per Day</strong></p>
-              <p id="fat-per-day"></p>
-            </div> 
-            <div class="col-3">
-              <p ><strong>Carbs Per Day</strong></p>
-              <p id="carbs-per-day"></p>
-            </div> 
-            <div class="col-3">
-              <p ><strong>Protein Per Day</strong></p>
-              <p id="protein-per-day"></p>
-            </div> 
-            <div class="col-3">
-            </div> 
-          </div>
-
-<!-- height_cm, weight_kg, , fat_per_day, carbs_per_day, protein_per_day
---> 
-
-        </form>
-=======
     <main id="first_page_main">
       <div id="first_desc" class="row">
         <p>The app designed to help you track your health</p>
@@ -132,7 +13,6 @@
       <br>
       <div id="first_login" class="row">
         <a href="/logpage"><button id="login" class="btn btn-primary">Login</button></a><p> or </p><a href="/signpage"><button id="signup" class="btn btn-primary">Sign Up</button></a>
->>>>>>> 231bf8901cf7068031a65132742a7a7a3acff5c8
       </div>
     </main>
   </div> <!-- home -->
