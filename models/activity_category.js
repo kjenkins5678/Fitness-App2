@@ -4,6 +4,12 @@
 module.exports = function(sequelize, DataTypes) {
   // eslint-disable-next-line camelcase
   var Activity_Category = sequelize.define("Activity_Category", {
+    id: {
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
     // eslint-disable-next-line camelcase
     category_name: {
       type: DataTypes.STRING,

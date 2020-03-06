@@ -1,4 +1,5 @@
 var db = require("../models");
+var request = require('request');
 
 module.exports = function (app) {
 
@@ -28,7 +29,17 @@ module.exports = function (app) {
   // activities
   // ********************************************
 
-  app.post("/api/newActivity", function (req, res) {
+  app.get("/api/getActivitiesByCategory/:id", function(req, res) {
+    console.log("GET ACTIVITIES BY ID " + req.params.id)
+    db.activities.findAll({
+      where: { fk_activity_category: req.params.id }
+    })
+      .then(function(dbAct) {
+        res.json(dbAct);
+      });
+  });
+
+  app.post("/api/newActivity", function(req, res){
     //console.log("new cat ");
     db.activities.create(req.body).then(function(dbCat){
       res.json(dbCat);
@@ -101,22 +112,24 @@ module.exports = function (app) {
       where: {
         id: req.body.id
       }
-    }).then(function(dbUser) {
-      res.json(dbUser);
-    });
+    })
+      .then(function(dbUser) {
+        res.json(dbUser);
+      });
   });
 
   app.get("/api/testing/:id", function(req, res) {
     db.users.findAll({
-      where: {id: req.params.id},
-      include: [{
-        model: db.user_activity_log,
-        required: true
-      },
-      {
-        model: db.user_foodlog,
-        required:true
-      }]
+      where: { id: req.params.id },
+      include: [
+        {
+          model: db.user_activity_log,
+          required: true
+        },
+        {
+          model: db.user_foodlog,
+          required:true
+        }]
     }).then(function(user) {
       res.json(user);
     });
@@ -136,7 +149,41 @@ app.post("/api/newFood", function(req, res) {
       res.json(dbCat);
     });
 });
-};
+  // ********************************************
+  // user activity
+  // ********************************************
+
+  app.post("/api/newUserActivity", function(req, res){
+    //console.log("new cat ");
+    db.user_activity_log.create(req.body).then(function(dbUA){
+      res.json(dbUA);
+    });
+  });
+
+/*
+  app.get("/api/getWeax/", function(req, res) {
+
+    console.log("inside the weather route"); 
+    //var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat="
+    //  + latitude + "&lon=" + longitude + "&units=imperial&appid=" + process.env.OW_API_KEY;
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat="
+      + "38.88" + "&lon=" + "-77.10" + "&units=imperial&appid=" + process.env.OW_API_KEY;
+    console.log(queryURL );
+
+  request ({
+    uri: queryURL,
+    function (error, response, body) {
+      console.log ("inside request"); 
+      if (!error && response.statusCode === 200) {
+        console.log(body);
+        res.json(body);
+      }
+    }
+  });
+});
+*/
+
+}
 // app.post("/api/newFood", function (req, res) {
 
 //   db.Food.create(req.body).then(function (dbCat) {

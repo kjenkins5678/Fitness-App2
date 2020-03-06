@@ -49,6 +49,7 @@ CREATE TABLE `user_activity_logs` (
   `id` int NOT NULL AUTO_INCREMENT,
   `activity_dt` datetime NOT NULL,
   `duration` int NOT NULL,
+  `duration_entry` varchar(16),
   `calories_per_hour` int, 
   `calories_per_activity` int, 
   `createdAt` datetime NOT NULL,

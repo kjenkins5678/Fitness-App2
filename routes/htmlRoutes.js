@@ -83,7 +83,7 @@ module.exports = function(app) {
   // ********************************************
 
   app.get("/log-user-act/:id", function(req, res) {
-    console.log("here i am"); 
+    console.log("here i am");
     db.users.findAll ().then(function (dbUser){
       db.activity_categories.findAll ().then(function (dbCat){
         console.log("PARAM ID " + req.params.id);
