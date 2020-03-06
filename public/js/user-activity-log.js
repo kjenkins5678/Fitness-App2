@@ -90,6 +90,16 @@ function loadPosition(position) {
       " ow api key " || process.env.OW_API_KEY
   );
 
+/*  $.ajax({
+    method: "GET",
+    url:"/api/getWeax/"
+  }).then(function(dbWeax) {
+
+    console.log (dbWeax); 
+
+    forecast.description = dbWeax[0].description;
+*/
+
   var owApiKey = "642722fdfe11197400af4a85e9c528a0";
 
   var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat="
@@ -106,6 +116,7 @@ function loadPosition(position) {
     url: queryURL,
     method: "GET"
   }).then(function(response) {
+
     forecast.description = response.weather[0].description;
     forecast.temp = Math.round(response.main.temp);
     forecast.temp_min = Math.round(response.main.temp_min);
