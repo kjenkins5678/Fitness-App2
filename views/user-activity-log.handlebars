@@ -79,10 +79,57 @@
             <button id="submit-user-act" class="btn btn-primary float-right">Submit</button>
           </div>
         </div>
+      </div>
+    </div> <!-- users/activities row -->
 
+    <hr>
+    <!-- weather and possibly places-->
+    <div class="row">
+      <div class="col-4" id="weatherCol">
+
+        <h5>Today's Weather</h5> 
+        <div class="row">
+          <div class="col">
+              <h6 id ="weaxDescription"></h6>
+          </div>
+          <div class="col">
+              <img id="weaxIcon" src="assets/img/placeholderIcon.png" alt="img not found">
+          </div>
+        </div>
       </div>
 
-    </div> <!-- row -->
+      <div class="col-4" id="tempsCol">
+        <h5>Temperatures</h5>
+        <div class="row">
+          <div class="col">
+              <h6>Min</h6><p id="weaxCurrTemp"></p>
+          </div>
+          <div class="col">
+              <h6>Min</h6><p id="weaxMinTemp"></p>
+          </div>
+          <div class="col">
+              <h6>Max</h6><p id="weaxMaxTemp"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4" id="windCol">
+        <h5>Wind</h5>
+        <div class="row">
+          <div class="col">
+              <h6>Speed</h6><p id="weaxWindSpeed"></p>
+          </div>
+          <div class="col">
+              <h6>From The</h6><p id="weaxWindDirection"></p>
+          </div>
+          <div class="col">
+              <h6>Cloud Cover</h6><p id="weaxCloudCoverPct"></p>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- weather/places row -->
+    <hr>
   </div> <!-- container -->
 </div> <!-- home -->
 

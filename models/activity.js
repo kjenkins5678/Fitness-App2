@@ -3,6 +3,12 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Activity = sequelize.define("Activity", {
+    id: {
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
     // eslint-disable-next-line camelcase
     activity_name: {
       type: DataTypes.STRING,

@@ -15,9 +15,51 @@ var selectedActMET = 0;
 var latitude;
 var longitude;
 
+var forecast = {
+  description: "",
+  temp: "",
+  temp_min: "",
+  temp_max: "",
+  deg: "",
+  direction: "",
+  speed: "",
+  cloud_cover_pct:""
+};
+
+var weaxCurrTempElem = $("#weaxCurrTemp");
+var weaxMinTempElem = $("#weaxMinTemp");
+var weaxMaxTempElem = $("#weaxMaxTemp");
+var weaxDescriptionElem = $("#weaxDescription");
+var weaxWindSpeedElem = $("#weaxWindSpeed");
+var weaxWindDirectionElem = $("#weaxWindDirection");
+var weaxCloudCoverPctElem = $("#weaxCloudCoverPct");
+var weaxIconElem = $("#weaxIcon");
+
 // **********************************************
 // functions
 // **********************************************
+
+function getCardinalDirection(deg){
+  if (deg >= 000 && deg <= 020){
+    return "North";
+  } else if (deg >= 021 && deg <= 070) {
+    return "NorthEast";
+  } else if (deg >= 071 && deg <= 115) {
+    return "East";
+  } else if (deg >= 116 && deg <= 150) {
+    return "SouthEast";
+  } else if (deg >= 151 && deg <= 200) {
+    return "South";
+  } else if (deg >= 201 && deg <= 250) {
+    return "SouthWest";
+  } else if (deg >= 251 && deg <= 290) {
+    return "West";
+  } else if (deg >= 291 && deg <= 340) {
+    return "NorthWest";
+  } else if (deg >= 341 && deg <= 360) {
+    return "North";
+  }
+}
 
 // **********************************************
 // **********************************************
@@ -40,8 +82,56 @@ function loadPosition(position) {
   // Grab coordinates from the given object
   latitude = position.coords.latitude;
   longitude = position.coords.longitude;
-  console.log ("Your coordinates are Latitude: " + latitude + " Longitude " + longitude);
+  console.log(
+    "Your coordinates are Latitude: " +
+      latitude +
+      " Longitude " +
+      longitude +
+      " ow api key " || process.env.OW_API_KEY
+  );
 
+  var owApiKey = "642722fdfe11197400af4a85e9c528a0";
+
+  var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat="
+    + latitude + "&lon=" + longitude + "&units=imperial&appid=" + owApiKey;
+
+  //var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat="
+  //  + latitude + "&lon=" + longitude + "&units=imperial&appid=" + "166a433c57516f51dfab1f7edaed8413";
+
+  //var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat="
+  //  + latitude + "&lon=" + longitude + "&units=imperial&appid=" + process.env.OW_API_KEY;
+  console.log(queryURL);
+
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response) {
+    forecast.description = response.weather[0].description;
+    forecast.temp = Math.round(response.main.temp);
+    forecast.temp_min = Math.round(response.main.temp_min);
+    forecast.temp_max = Math.round(response.main.temp_max);
+    forecast.deg = response.wind.deg;
+    forecast.direction = getCardinalDirection(response.wind.deg);
+    forecast.speed = Math.round(response.wind.speed);
+    forecast.cloud_cover_pct = response.clouds.all;
+
+    console.log(forecast);
+    console.log(response.weather[0].icon);
+
+    weaxDescriptionElem.text(forecast.description);
+    weaxCurrTempElem.text(forecast.temp + '\xB0');
+    weaxMinTempElem.text(forecast.temp_min + '\xB0');
+    weaxMaxTempElem.text(forecast.temp_max + '\xB0');
+
+    weaxWindSpeedElem.text(forecast.speed + "mph");
+    weaxWindDirectionElem.text(forecast.direction);
+    weaxCloudCoverPctElem.text(forecast.cloud_cover_pct + "%");
+
+    weaxIconElem.attr("src",  "https://openweathermap.org/img/wn/"
+      + response.weather[0].icon 
+      + "@2x.png");
+
+  });
 } // loadPosition
 
 // **********************************************
@@ -108,7 +198,7 @@ $("#actList").on("click", "a", function() {
 });
 
 // **********************************************
-// save an activity 
+// save an activity
 // **********************************************
 
 submitUserActElem.on("click", function (){
@@ -131,8 +221,6 @@ submitUserActElem.on("click", function (){
     console.log("user insert ok" + dbUA);
   });
 
-newUserActivity
-
 });
 
 // **********************************************
@@ -140,3 +228,4 @@ newUserActivity
 // **********************************************
 
 getLocation();
+
