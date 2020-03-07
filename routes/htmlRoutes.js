@@ -43,8 +43,14 @@ module.exports = function(app) {
   });
 
   // ********************************************
-  // open the activity maintenance page 
+  // open the activity maintenance page
   // ********************************************
+
+  app.get("/um", function(req, res) {
+    db.users.findAll ().then(function (user){
+      res.render("user-maint", { userList: user });
+    });
+  });
 
   app.get("/activity-maint/:id", function (req,res){
     db.activity_categories.findAll ().then(function (cat){
