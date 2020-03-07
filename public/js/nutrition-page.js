@@ -42,7 +42,7 @@ $("#userList").on("click", "a", function() {
   
       li = "";
       for (i=0;i<dbAct.length;i++){
-        li='<li><p><a href="" class="nutritionLink" met="' + dbAct[i].met + '" data-id="' + dbAct[i].id + '">' + dbAct[i].foodNameList + '</a></p></li>';
+        li='<li><p><a href="" class="nutritionLink" met="' + dbNut[i].met + '" data-id="' + dbNut[i].id + '">' + dbAct[i].foodNameList + '</a></p></li>';
         //console.log(li);
         $("#actList").append(li);
       };
@@ -66,21 +66,20 @@ $("#userList").on("click", "a", function() {
   
   submitUserActElem.on("click", function (){
   
-    console.log ("user " + selectedUserID + " category " + selectedCatID + " activity " + selectedActID); 
+    console.log ("user " + selectedUserID + " category " + selectedCatID + " activity " + selectedNutID); 
   
-    var newUserActivity = {
-      activity_dt : moment().format ('MM/DD/YYYY'),
-      duration : durationInputElem.val().trim(),
-      duration_entry : "",
-      calories_per_hour : Math.round (selectedUserWeightKG * selectedActMET), 
-      calories_per_activity : Math.round (selectedUserWeightKG * selectedActMET * (durationInputElem.val().trim() / 60)), 
+    var nutritionActivity = {
+      day_eaten : moment().format ('MM/DD/YYYY'),
+      food_name : "",
+      food_amount: "",
+      calories_of_food : Math.round (getFoodNameList * getSelectedFood), 
       fk_user : selectedUserID,
-      fk_activity : selectedActID
+      fk_nutrition : getSelectedFood
     };
   
-    console.log (newUserActivity); 
+    console.log (newFoodButton); 
   
-    $.post("/api/newUserActivity", newUserActivity).then(function(dbUA) {
+    $.post("/api/newFoodButton", newFoodButton).then(function(dbUA) {
       console.log("user insert ok" + dbUA);
     });
   
