@@ -62,13 +62,32 @@ module.exports = function(app) {
   // ********************************************
   // open the nutrition maintenance page 
   // ********************************************
-
-  app.get("/nutrition-maint/:foodid", function (req,res){
-    db.fdnutritionsummary.findAll ().then(function (dlist){
-      //console.log(cat);{
-        res.render("nutrition-maint", { foodDescList: dlist });
+// beginning of old
+  // app.get("/nutrition-maint/:foodid", function (req,res){
+  //   db.fdnutritionsummary.findAll ().then(function (food){
+  //     //console.log(cat);{
+  //       res.render("nutrition-maint", { foodDescList: dlist });
+  //   });
+  // });
+  //end of old
+  app.get("/nutrition-maint/:id", function (req,res){
+    db.fdnutritionsummary.findAll ().then(function (dbFoodDesc){
+  if (req.params.id===0 || typeof req.params.id == "undefined"){
+    res.render("nutrition-maint", { 
+      descList: dbFoodDesc, 
+      foodList: [] });
+  } else {
+    db.fdnutritionsummary.findAll({
+      where: {FoodId : req.params.id }
+    }).then(function(dbFood) {
+      res.render("nutrition-maint", {
+        descList: dbFoodDesc, 
+        foodList: dbFood 
+      });
     });
-  });
+  }
+});
+});
 
   // ********************************************
   // log page 

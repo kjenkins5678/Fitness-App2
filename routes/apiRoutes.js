@@ -144,11 +144,63 @@ module.exports = function (app) {
 //    res.json(dbCat);
 //    });
 //  });
-app.post("/api/newFood", function(req, res) {
-    db.fdnutritionsummary.create(req.body).then(function(dbCat) {
-      res.json(dbCat);
+app.get("/api/getFoodbyCategory/:id", function(req, res) {
+    console.log("Get Foods "+ req.params.id)
+    db.fdnutritionsummary.findAll({
+      where: { FoodId: req.params.id}
+    }).then(function(dbFood) {
+      res.json(dbFood);
     });
+    //db.fdnutritionsummary.create(req.body).then(function(dbFood) {
+     // res.json(dbFood);
+    //});
 });
+
+ app.post("/api/newDesc", function (req, res) {
+   console.log("new FoodDescription ");
+   db.fdnutritionsummary.create(req.body).then(function(dbFoodDesc){
+     res.json(dbFoodDesc);
+   });
+ });
+
+
+
+app.delete("/api/del-fooddesc/:id", function (req, res) {
+  console.log("delete fooddesc");
+  db.fdnutritionsummary.destroy({
+    where: {
+      FoodId: req.params.id
+    }
+  }).then(function (dbFood) {
+    res.json(dbFood);
+  });
+});
+
+
+app.post("/api/newFd", function(req, res){
+  db.fdnutritionsummary.create(req.body).then(function(dbFood) {
+    res.json(dbFood);
+  });
+});
+
+app.post("/api/updFood/:id", function (req, res) {
+
+  console.log("updFood\n" + req.body.FdName);
+  console.log("updFood\n" + req.params.id);
+
+  db.fdnutritionsummary.update({
+    FdName: req.body.FdName,
+    Calories: req.body.Calories
+  }, {
+    where: {
+      FoodId: req.params.id
+    }
+  }).then(function (dbFood) {
+    res.json(dbFood);
+  });
+
+});
+
   // ********************************************
   // user activity
   // ********************************************

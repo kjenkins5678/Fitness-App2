@@ -11,16 +11,16 @@ body {
 .user-info{
   background-color: blanchedalmond;
 }
-#category-name, #new-user-name{
+#category-name, #new-user-name, #food-desc{
   width:240px; 
 }
-#activity-name{
+#activity-name, #new-food{
   width:440px; 
 }
-.actNameList{
+.actNameList, .foodNameList{
   width:340px; 
 }
-.actMetList{
+.actMetList, .foodCalList{
   width:60px; 
 }
 .form-group{
@@ -29,7 +29,7 @@ body {
 p{
   margin-bottom:8px;
 }
-#new-met{
+#new-met, #new-food{
   width: 140px;
 }
 #calc-user, #submit-user, #upsert-user, #submit-user-act{
