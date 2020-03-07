@@ -70,7 +70,7 @@ passport.use(new LocalStrategy({
       if (!user) { return res.redirect('/'); }
       req.logIn(user, function(err) {
         if (err) { return next(err); }
-        return res.redirect(`/activity-maint/${req.user.id}`);
+        return res.redirect(`/log/${req.user.id}`);
       });
     })(req, res, next);
   });
