@@ -4,11 +4,15 @@
 var newCatElem = $("#category-name");
 var newCatButton = $("#submit-cat");
 var deleteCatButton = $(".delete-cat");
+
 var newActButton = $("#submit-act");
 var newActElem = $("#activity-name");
+
 var newMetElem = $("#new-met");
+
 var deleteActButton = $(".delete-act");
 var updateActButton = $(".update-act");
+
 var actNameList = $(".actNameList");
 var actMetList = $(".actMetList");
 
@@ -23,6 +27,7 @@ var selectedCat = 0;
 // **********************************************
 
 // category listeners
+
 
 newCatButton.on("click", function() {
   event.preventDefault();

@@ -65,7 +65,7 @@ CREATE TABLE `user_activity_logs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE FdNutritionSummary (
-  FoodId int NOT NULL,
+  FoodId int NOT NULL AUTO_INCREMENT,
   FdGrp_Desc varchar(50) not null,
   FdGrp_Cd varchar(10) null,
   FdName varchar(200) not null,
