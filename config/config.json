@@ -2,14 +2,14 @@
   "development": {
     "username": "root",
     "port": "3306",
-    "password": "testtest",
+    "password": "admin",
     "database": "fitness_app2_db", 
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
+    "password": "admin",
     "database": "testdb",
     "host": "localhost",
     "dialect": "mysql",
