@@ -3,6 +3,7 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('activity_categories', {
     id: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true

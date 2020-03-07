@@ -1,5 +1,4 @@
 var db = require("../models");
-var path = require("path");
 
 module.exports = function(app) {
 
@@ -44,8 +43,14 @@ module.exports = function(app) {
   });
 
   // ********************************************
-  // open the activity maintenance page 
+  // open the activity maintenance page
   // ********************************************
+
+  app.get("/um", function(req, res) {
+    db.users.findAll ().then(function (user){
+      res.render("user-maint", { userList: user });
+    });
+  });
 
   app.get("/activity-maint/:id", function (req,res){
     db.activity_categories.findAll ().then(function (cat){
@@ -60,13 +65,31 @@ module.exports = function(app) {
       }
     });
   });
+  // ********************************************
+  // open the nutrition maintenance page 
+  // ********************************************
+
+  app.get("/nutrition-maint/:foodid", function (req,res){
+    db.fdnutritionsummary.findAll ().then(function (dlist){
+      //console.log(cat);{
+        res.render("nutrition-maint", { foodDescList: dlist });
+    });
+  });
+
+  // ********************************************
+  // log page 
+  // ********************************************
+
+  app.get("/log", function (req,res){
+    res.render("log");
+  });
 
   // ********************************************
   // Render the user activity log page
   // ********************************************
 
   app.get("/log-user-act/:id", function(req, res) {
-    console.log("here i am"); 
+    console.log("here i am");
     db.users.findAll ().then(function (dbUser){
       db.activity_categories.findAll ().then(function (dbCat){
         console.log("PARAM ID " + req.params.id);

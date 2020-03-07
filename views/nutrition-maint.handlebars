@@ -1,0 +1,68 @@
+<div class="container">
+
+   <div class="jumbotron">
+      <h3 class="text-center">Nutrition Maintenance</h3>
+      <br>
+   </div> <!--jumbotron-->
+
+   <div class="row">
+      <div class="col-4">
+         <h5>Food List</h5>
+         <button id="submit-food" class="btn btn-primary float-right">Submit</button>
+         <form class="clearfix mb-4" action="POST">
+            <div class="form-group">
+               <input type="text" class="form-control" id="FdName" placeholder="Enter New Food"></input>
+            </div>
+         </form>
+         <hr>
+         <ul>
+         {{#each foodDescList}}
+            <li>
+               <p>
+               <a href="/nutrition-maint/{{foodid}}" class="foodLink" data-id="{{foodid}}">{{fdgrp_desc}}</a>
+               <button class="btn btn-danger btn-sm float-right delete-cat" data-id="{{foodid}}">ｘ</button> <!---->
+               </p>
+               </li>
+         {{/each}} 
+         </ul>
+
+      </div> <!--col-->
+
+      <div class="col-7 offset-1">
+         <h5>Food</h5>
+         <button id="submit-act" class="btn btn-primary float-right">Submit</button>
+         <form class="clearfix mb-4" action="POST">
+            <div class="form-group">
+               <div class="row">
+                  <input type="text" class="form-control col-6" id="FdGrp_desc" placeholder="Enter New Food"></input>
+                  <input type="text" class="form-control col-4 offset-1" id="FdName" placeholder="Enter New Calories"></input>
+               </div>
+            </div>
+         </form>
+         <hr>
+         <ul class="foodList">
+         <div class="row">
+            <p class="col-7"><strong>Food</strong></p>
+            <p class="col-5"><strong>Calories</strong></p>
+         </div>
+         {{#each foodList}}
+         <form>
+            <li>
+               <p>
+               <input type="text" class="foodList" data-id="{{foodid}}" value="{{FdGrp_desc}}" name="FdGrp_desc" id="FdGrp_desc{{FdGrp_desc}}""></input> 
+               <input type="text" class="foodList" data-id="{{foodid}}" value="{{FdName}}" name="FdName" id="fdName{{FdName}}""></input> 
+
+               <button class="btn btn-danger btn-sm float-right delete-act" data-id="{{foodid}}">ｘ</button> 
+               <button class="btn btn-danger btn-sm float-right update-act" value ="{{foodid}}" data-id="{{foodid}}" name="fdName" type="submit">upd</button> 
+               </p>
+            </li>
+            </form>
+         {{/each}} 
+         </ul>
+
+     </div> <!--col-->
+
+  </div> <!--row-->
+</div> <!--container-->
+
+

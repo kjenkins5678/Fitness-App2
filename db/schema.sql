@@ -4,12 +4,12 @@ CREATE DATABASE fitness_app2_db;
 
 USE fitness_app2_db;
 
-CREATE TABLE `activity_categories` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `category_name` varchar(255) NOT NULL,
+CREATE TABLE "activity_categories" (
+  "id" int NOT NULL AUTO_INCREMENT,
+  `category_name` varchar (255) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY ('id')
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `activities` (
@@ -49,6 +49,7 @@ CREATE TABLE `user_activity_logs` (
   `id` int NOT NULL AUTO_INCREMENT,
   `activity_dt` datetime NOT NULL,
   `duration` int NOT NULL,
+  `duration_entry` varchar(16),
   `calories_per_hour` int, 
   `calories_per_activity` int, 
   `createdAt` datetime NOT NULL,
@@ -93,6 +94,26 @@ CREATE TABLE `user_foodlogs` (
   `fk_user` int NOT NULL,
   `fk_food` int NOT NULL,
   `userId` int, 
+  PRIMARY KEY (`id`),
+  KEY `fk_user_idx` (`fk_user`),
+  KEY `fk_food_idx` (`fk_food`),
+  CONSTRAINT `fk_food` FOREIGN KEY (`fk_food`) REFERENCES `fdnutritionsummary` (`FoodId`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_user` FOREIGN KEY (`fk_user`) REFERENCES `users` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `user_foodlog` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `FoodId` int NOT NULL,
+  `FoodConsume_dt` datetime NOT NULL,
+  `Amount` float NOT NULL,
+  `Calories` float NOT NULL,
+  `Protein` float NOT NULL,
+  `Fat` float NOT NULL,
+  `Carbohydrates` float NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `fk_user` int NOT NULL,
+  `fk_food` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_user_idx` (`fk_user`),
   KEY `fk_food_idx` (`fk_food`),

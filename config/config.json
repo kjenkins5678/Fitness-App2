@@ -1,7 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "admin",
+    "port": "3306",
+    "password": "Mysql000!",
     "database": "fitness_app2_db", 
     "host": "localhost",
     "dialect": "mysql"

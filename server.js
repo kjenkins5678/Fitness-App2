@@ -1,4 +1,6 @@
 require("dotenv").config();
+console.log(process.env.OW_API_KEY);
+
 var express = require("express");
 var exphbs = require("express-handlebars");
 let passport = require('passport');

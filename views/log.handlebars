@@ -9,23 +9,84 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mb-3">
         <div class="card">
             <h3>Targets</h3>
-            <p>Calorie Goal: {{goal_cal}}, Protein Goal: {{goal_pro}}, Fat Goal: {{goal_fat}}, Carb Goal: {{goal_carb}} </p>
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Calorie</th>
+                    <th scope="col">Protein</th>
+                    <th scope="col">Fat</th>
+                    <th scope="col">Carb</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>{{goal_cal}}</td>
+                    <td>{{goal_pro}}</td>
+                    <td>{{goal_fat}}</td>
+                    <td>{{goal_carb}}</td>
+                    </tr>
+                    <tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
-    {{#each examples_activity}}
-        <li data-id="{{this.id}}" class="list-group-item">
-        <p> Date: {{this.activity_dt}}, Activity: {{this.fk_activity}}, Duration: {{this.duration}}, Calories Burned: {{this.calories_per_activity}}</p>
-        </li>
-    {{/each}}
+    <div class="row mb-3">
+        <div class="card">
+            <h3>Activity</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Activity ID</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">Calories Burned</th>
+                    <th scope="col">Date</th>
+                    </tr>
+                </thead>
+            {{#each examples_activity}}
+                <tbody>
+                    <tr>
+                    <td>{{this.fk_activity}}</td>
+                    <td>{{this.duration}}</td>
+                    <td>{{this.calories_per_activity}}</td>
+                    <td>{{this.activity_dt}}</td>
+                    </tr>
+                    <tr>
+                </tbody>
+            {{/each}}
+            </table>
+        </div>
+    </div>
 
-    {{#each examples_food}}
-        <li data-id="{{this.id}}" class="list-group-item">
-        <p> Date: {{this.FoodConsume_dt}}, Food: {{this.FoodId}}</p>
-        </li>
-    {{/each}}
-
+    <div class="row">
+        <div class="card">
+            <h3>Food</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Food ID</th>
+                    <th scope="col">Calories</th>
+                    <th scope="col">Fat</th>
+                    <th scope="col">Carbs</th>
+                    <th scope="col">Date</th>
+                    </tr>
+                </thead>
+            {{#each examples_food}}
+                <tbody>
+                    <tr>
+                    <td>{{this.FoodId}}</td>
+                    <td>{{this.Calories}}</td>
+                    <td>{{this.Fat}}</td>
+                    <td>{{this.Carbohydrates}}</td>
+                    <td>{{this.FoodConsume_dt}}</td>
+                    </tr>
+                    <tr>
+                </tbody>
+            {{/each}}
+            </table>
+        </div>
+    </div>
 </div>

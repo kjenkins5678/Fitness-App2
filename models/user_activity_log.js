@@ -3,6 +3,7 @@
 module.exports = function(sequelize, DataTypes) {
   var user_activity_log = sequelize.define('user_activity_log', {
     id: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
@@ -14,6 +15,10 @@ module.exports = function(sequelize, DataTypes) {
     duration: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    duration_entry: {
+      type: DataTypes.STRING(16),
+      allowNull: true
     },
     calories_per_hour: {
       type: DataTypes.INTEGER,
