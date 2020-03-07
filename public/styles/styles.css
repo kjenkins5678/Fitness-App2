@@ -2,7 +2,7 @@
   background-color: mediumspringgreen;
 }
 body {
-  background-color:#f4e7d7;
+  background-image: url(../assets/background2.png);
 }
 .jumbotron{
   background-color:#c88937;
@@ -40,15 +40,5 @@ ul{
 }
 
 #first_page_main {
-  margin: 0 auto;
-}
-
-#first_desc {
-  text-align: center;
-  margin: 0 auto;
-}
-
-#first_login {
-  text-align: center;
   margin: 0 auto;
 }

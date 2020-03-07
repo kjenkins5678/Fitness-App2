@@ -122,4 +122,24 @@ module.exports = function(app) {
     });
   });
 
+  // ********************************************
+  // authentication
+  // ********************************************
+
+  // app.post('/login', function(req, res) {
+  //   console.log(req.body);
+  //   console.log(req.body.username);
+  //   db.users.findOne({where: {user_name: `${req.body.username}`}}, function(err, user) {
+  //     console.log(user);
+  //     if (err) throw err;
+  //     if (!user) {
+  //       location.replace('/');
+  //     } else if (user.password !== req.body.username) {
+  //       location.replace('/signpage');
+  //     } else {
+  //       location.replace('/activity-maint')
+  //     }
+  //   })
+  // })
+  
 };
