@@ -3,6 +3,7 @@
 module.exports = function(sequelize, DataTypes) {
   var food = sequelize.define('FdNutritionSummary', {
     FoodId: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true

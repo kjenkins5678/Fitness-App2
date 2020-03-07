@@ -86,9 +86,8 @@ deleteFoodDescButton.on("click", function() {
 /////////////////////////
 newFoodButton.on("click", function () {
   event.preventDefault();
-  
-  var newfoodID = window.location.href.substring(0, (window.location.href.lastIndexOf("/")) + 1);
-  // var newfoodID = window.location.href.substring(window.location.href.lastIndexOf('/')+1); 
+  //var newfoodID = window.location.href.substring(0, (window.location.href.lastIndexOf("/")) + 1);
+  var newfoodID = window.location.href.substring(window.location.href.lastIndexOf('/')+1); 
   var newFd = newFood.val().trim();
   var newCal = newCalories.val().trim();
   var newPro = newProtein.val().trim();
@@ -104,7 +103,8 @@ newFoodButton.on("click", function () {
     Carbohydrates: newCarb,
     Amount: newAmt,
     FdGrp_desc: newFoodCat,
-    FoodId: newfoodID};
+    FoodId: newfoodID
+  };
   $.post("/api/newFd", newFoodInsert).then(function (dbFood) {
     console.log("insert ok" + dbFood);
     location.reload();
