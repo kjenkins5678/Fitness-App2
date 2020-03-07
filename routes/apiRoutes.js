@@ -156,7 +156,7 @@ module.exports = function (app) {
   //   })
   // })
   
-};
+
 
 // ********************************************
 // food
@@ -206,7 +206,7 @@ app.post("/api/newFood", function(req, res) {
 });
 */
 
-}
+
 // app.post("/api/newFood", function (req, res) {
 
 //   db.Food.create(req.body).then(function (dbCat) {
@@ -241,4 +241,4 @@ app.post("/api/newFood", function(req, res) {
   //     res.json(dbFood);
   //   });
   // });
-
+};
