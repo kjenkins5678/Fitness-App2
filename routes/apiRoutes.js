@@ -4,7 +4,7 @@ var request = require('request');
 module.exports = function (app) {
 
   // ********************************************
-  // activity categories 
+  // activity categories
   // ********************************************
 
   app.post("/api/newCat", function (req, res) {
@@ -14,7 +14,7 @@ module.exports = function (app) {
     });
   });
 
-  app.delete("/api/delCat/:id", function (req, res) {
+  app.delete("/api/delCat/:id", function(req, res) {
     //console.log("cat del");
     db.activity_categories.destroy({
       where: {
@@ -64,7 +64,7 @@ module.exports = function (app) {
 
   });
 
-  app.delete("/api/delActivity/:id", function (req, res) {
+  app.delete("/api/delActivity/:id", function(req, res) {
     //console.log("cat del");
     db.activities.destroy({
       where: {
