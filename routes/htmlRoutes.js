@@ -77,13 +77,13 @@ module.exports = function(app) {
   // });
   //end of old
   app.get("/nutrition-maint/:id", function (req,res){
-    db.fdnutritionsummary.findAll ().then(function (dbFoodDesc){
+    db.FdNutritionSummaries.findAll ().then(function (dbFoodDesc){
   if (req.params.id===0 || typeof req.params.id == "undefined"){
     res.render("nutrition-maint", { 
       descList: dbFoodDesc, 
       foodList: [] });
   } else {
-    db.fdnutritionsummary.findAll({
+    db.FdNutritionSummaries.findAll({
       where: {FoodId : req.params.id }
     }).then(function(dbFood) {
       res.render("nutrition-maint", {

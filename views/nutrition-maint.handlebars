@@ -26,6 +26,7 @@
          <button id="submit_desc" class="btn btn-primary float-right">Submit</button>
          <form class="clearfix mb-4" action="POST">
             <div class="form-group">
+               
                <input type="text" class="form-control" id="food_desc" placeholder="Enter New Food Category"></input>
             </div>
          </form>
@@ -39,12 +40,12 @@
                </p>
                </li>
          {{/each}} 
-         </ul>
+         </ul> --}}
 
-      </div> <!--col--> --}}
+      </div> <!--col-->
 
       <div class="col-md-7 offset-1">
-         <h5>Food</h5>
+         <h5>Add New Food</h5>
          <button id="submit-food" class="btn btn-primary float-right">Submit</button>
          <form class="clearfix mb-4" action="POST">
             <div class="form-group">
@@ -74,7 +75,7 @@
          <form>
             <li>
                <p>
-               <input type="text" class="foodGroupList" data-id="{{id}}" value="{{FdGrp_desc}}" name="FdGrp_desc" id="foodGroup{{id}}""></input> 
+               <input type="text" class="foodGroupList" data-id="{{id}}" value="{{FdGrp_Desc}}" name="FdGrp_Desc" id="foodGroup{{id}}""></input> 
                <input type="text" class="foodNameList" data-id="{{id}}" value="{{FdName}}" name="FdName" id="foodName{{id}}""></input> 
                <input type="number" class="foodAmtList" data-id="{{id}}" value="{{Amount}}" name="Amount" id="foodAmt{{id}}""></input> 
                <input type="number" class="foodCalList" data-id="{{id}}" value="{{Calories}}" name="Calories" id="foodCal{{id}}""></input> 

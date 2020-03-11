@@ -1,7 +1,6 @@
-/* jshint indent: 2 */
-
+'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var food = sequelize.define('FdNutritionSummary', {
+  var food = sequelize.define('FdNutritionSummaries', {
     FoodId: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -51,14 +50,26 @@ module.exports = function(sequelize, DataTypes) {
     Carbohydrates: {
       type: DataTypes.FLOAT,
       allowNull: false
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false
     }
-  });
+  },
   // food.associate = function(models) {
   //   // Associating users with user_activity_log
   //   food.hasMany(models.user_foodlogs, {
   //     onDelete: "cascade"
   //   });
   // };
-
+  {
+    freezeTableName: true,
+    tableName: 'FdNutritionSummaries',
+    
+  });
   return food;
 };
