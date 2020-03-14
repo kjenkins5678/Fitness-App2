@@ -1,3 +1,18 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <a class="navbar-brand" href="/">Fitness App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="/activity-maint/0">Activity Maintenance</a>
+      <a class="nav-item nav-link" href="/nutrition-maint/0">Nutrition Maintenance</a>
+      <a class="nav-item nav-link" href="/log-user-act/0">Log User Activity</a>
+    </div>
+  </div>
+</nav>
+
 <div class="container">
 
    <div class="jumbotron">
@@ -6,54 +21,68 @@
    </div> <!--jumbotron-->
 
    <div class="row">
-      <div class="col-4">
+      {{!-- <div class="col-4">
          <h5>Food List</h5>
-         <button id="submit-food" class="btn btn-primary float-right">Submit</button>
+         <button id="submit_desc" class="btn btn-primary float-right">Submit</button>
          <form class="clearfix mb-4" action="POST">
             <div class="form-group">
-               <input type="text" class="form-control" id="FdName" placeholder="Enter New Food"></input>
+               <input type="text" class="form-control" id="food_desc" placeholder="Enter New Food Category"></input>
             </div>
          </form>
          <hr>
-         <ul>
-         {{#each foodDescList}}
+         <ul id="descList">
+         {{#each descList}}
             <li>
                <p>
-               <a href="/nutrition-maint/{{foodid}}" class="foodLink" data-id="{{foodid}}">{{fdgrp_desc}}</a>
-               <button class="btn btn-danger btn-sm float-right delete-cat" data-id="{{foodid}}">ｘ</button> <!---->
+               <a href="/nutrition-maint/{{id}}" class="foodDescLink" data-id="{{id}}">{{FdGrp_Desc}}</a>
+               <button class="btn btn-danger btn-sm float-right del-fooddesc" data-id="{{id}}">ｘ</button> <!---->
                </p>
                </li>
          {{/each}} 
          </ul>
 
-      </div> <!--col-->
+      </div> <!--col--> --}}
 
-      <div class="col-7 offset-1">
+      <div class="col-md-7 offset-1">
          <h5>Food</h5>
-         <button id="submit-act" class="btn btn-primary float-right">Submit</button>
+         <button id="submit-food" class="btn btn-primary float-right">Submit</button>
          <form class="clearfix mb-4" action="POST">
             <div class="form-group">
                <div class="row">
-                  <input type="text" class="form-control col-6" id="FdGrp_desc" placeholder="Enter New Food"></input>
-                  <input type="text" class="form-control col-4 offset-1" id="FdName" placeholder="Enter New Calories"></input>
+                  <input type="text" class="form-control col-3" id="new-foodcat" placeholder="Food Group"></input>
+                  <input type="text" class="form-control col-3" id="new-food" placeholder="New Food"></input>
+                  <input type="text" class="form-control col-3" id="new-amt" placeholder="Servings"></input>
+                  <input type="text" class="form-control col-3" id="new-cal" placeholder="Calories"></input>
+                  <input type="text" class="form-control col-3" id="new-pro" placeholder="Protein"></input>
+                  <input type="text" class="form-control col-3" id="new-fat" placeholder="Fat"></input>
+                  <input type="text" class="form-control col-3" id="new-carb" placeholder="Carbs"></input>
                </div>
             </div>
          </form>
          <hr>
          <ul class="foodList">
          <div class="row">
-            <p class="col-7"><strong>Food</strong></p>
-            <p class="col-5"><strong>Calories</strong></p>
+            <p class="col-3"><strong>Food Grp</strong></p>
+            <p class="col-3"><strong>Food</strong></p>
+            <p class="col-3"><strong>Servings</strong></p>
+            <p class="col-3"><strong>Calories</strong></p>
+            <p class="col-3"><strong>Protein</strong></p>
+            <p class="col-3"><strong>Fat</strong></p>
+            <p class="col-3"><strong>Carbs</strong></p>
          </div>
          {{#each foodList}}
          <form>
             <li>
                <p>
-               <input type="text" class="foodList" data-id="{{foodid}}" value="{{FdGrp_desc}}" name="FdGrp_desc" id="FdGrp_desc{{FdGrp_desc}}""></input> 
-               <input type="text" class="foodList" data-id="{{foodid}}" value="{{FdName}}" name="FdName" id="fdName{{FdName}}""></input> 
-
-               <button class="btn btn-danger btn-sm float-right delete-act" data-id="{{foodid}}">ｘ</button> 
-               <button class="btn btn-danger btn-sm float-right update-act" value ="{{foodid}}" data-id="{{foodid}}" name="fdName" type="submit">upd</button> 
+               <input type="text" class="foodGroupList" data-id="{{id}}" value="{{FdGrp_desc}}" name="FdGrp_desc" id="foodGroup{{id}}""></input> 
+               <input type="text" class="foodNameList" data-id="{{id}}" value="{{FdName}}" name="FdName" id="foodName{{id}}""></input> 
+               <input type="number" class="foodAmtList" data-id="{{id}}" value="{{Amount}}" name="Amount" id="foodAmt{{id}}""></input> 
+               <input type="number" class="foodCalList" data-id="{{id}}" value="{{Calories}}" name="Calories" id="foodCal{{id}}""></input> 
+               <input type="number" class="foodProList" data-id="{{id}}" value="{{Protein}}" name="Protein" id="foodPro{{id}}""></input> 
+               <input type="number" class="foodFatList" data-id="{{id}}" value="{{Fat}}" name="Fat" id="foodFat{{id}}""></input> 
+               <input type="number" class="foodCarbList" data-id="{{id}}" value="{{Carbohydrates}}" name="Carbohydrates" id="foodCarb{{id}}""></input> 
+               <button class="btn btn-danger btn-sm float-right delete-act" data-id="{{id}}">ｘ</button> 
+               <button class="btn btn-danger btn-sm float-right update-food" value ="{{id}}" data-id="{{id}}" name="id" type="submit">upd</button> 
                </p>
             </li>
             </form>
@@ -61,7 +90,6 @@
          </ul>
 
      </div> <!--col-->
-
   </div> <!--row-->
 </div> <!--container-->
 
