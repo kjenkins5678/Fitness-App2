@@ -97,7 +97,7 @@ CREATE TABLE `user_foodlogs` (
   PRIMARY KEY (`id`),
   KEY `fk_user_idx` (`fk_user`),
   KEY `fk_food_idx` (`fk_food`),
-  CONSTRAINT `fk_food` FOREIGN KEY (`fk_food`) REFERENCES `fdnutritionsummary` (`FoodId`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_food` FOREIGN KEY (`fk_food`) REFERENCES `fdnutritionsummaries` (`FoodId`) ON UPDATE CASCADE,
   CONSTRAINT `fk_user` FOREIGN KEY (`fk_user`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
