@@ -64,7 +64,7 @@ CREATE TABLE `user_activity_logs` (
   CONSTRAINT `user_ibfk_2` FOREIGN KEY (`fk_activity`) REFERENCES `activities` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE FdNutritionSummary (
+CREATE TABLE FdNutritionSummaries (
   FoodId int NOT NULL AUTO_INCREMENT,
   FdGrp_Desc varchar(50) not null,
   FdGrp_Cd varchar(10) null,

@@ -83,7 +83,34 @@ deleteFoodDescButton.on("click", function() {
 
 
 
-/////////////////////////
+// /////////////////////////
+// newFoodButton.on("click", function () {
+//   event.preventDefault();
+//   //var newfoodID = window.location.href.substring(0, (window.location.href.lastIndexOf("/")) + 1);
+//   var newfoodID = window.location.href.substring(window.location.href.lastIndexOf('/')+1); 
+//   var newFd = newFood.val().trim();
+//   var newCal = newCalories.val().trim();
+//   var newPro = newProtein.val().trim();
+//   var newFt = newFat.val().trim();
+//   var newAmt = newAmount.val().trim();
+//   var newCarb = newCarbohydrates.val().trim();
+//   var newFoodCat = newFoodGroupDesc.val().trim();
+//   var newFoodInsert = { 
+//     FdName: newFd, 
+//     Calories: newCal, 
+//     Protein: newPro,
+//     Fat: newFt,
+//     Carbohydrates: newCarb,
+//     Amount: newAmt,
+//     FdGrp_desc: newFoodCat,
+//     FoodId: newfoodID
+//   };
+//   $.post("/api/newFd", newFoodInsert).then(function (dbFood) {
+//     console.log("insert ok" + dbFood);
+//     location.reload();
+//   });
+// });
+
 newFoodButton.on("click", function () {
   event.preventDefault();
   //var newfoodID = window.location.href.substring(0, (window.location.href.lastIndexOf("/")) + 1);
@@ -102,7 +129,7 @@ newFoodButton.on("click", function () {
     Fat: newFt,
     Carbohydrates: newCarb,
     Amount: newAmt,
-    FdGrp_desc: newFoodCat,
+    FdGrp_Desc: newFoodCat,
     FoodId: newfoodID
   };
   $.post("/api/newFd", newFoodInsert).then(function (dbFood) {
@@ -110,6 +137,9 @@ newFoodButton.on("click", function () {
     location.reload();
   });
 });
+
+
+
 
 deleteFoodButton.on("click", function () {
   event.preventDefault();

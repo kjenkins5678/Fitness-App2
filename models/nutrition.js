@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
       
     },
 
-    FdGrp_desc: {
+    FdGrp_Desc: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {

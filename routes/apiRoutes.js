@@ -169,7 +169,7 @@ module.exports = function (app) {
 //  });
 app.get("/api/getFoodbyCategory/:id", function(req, res) {
     console.log("Get Foods "+ req.params.id)
-    db.fdnutritionsummary.findAll({
+    db.FdNutritionSummaries.findAll({
       where: { FoodId: req.params.id}
     }).then(function(dbFood) {
       res.json(dbFood);
@@ -181,7 +181,7 @@ app.get("/api/getFoodbyCategory/:id", function(req, res) {
 
  app.post("/api/newDesc", function (req, res) {
    console.log("new FoodDescription ");
-   db.fdnutritionsummary.create(req.body).then(function(dbFoodDesc){
+   db.FdNutritionSummaries.create(req.body).then(function(dbFoodDesc){
      res.json(dbFoodDesc);
    });
  });
@@ -190,7 +190,7 @@ app.get("/api/getFoodbyCategory/:id", function(req, res) {
 
 app.delete("/api/del-fooddesc/:id", function (req, res) {
   console.log("delete fooddesc");
-  db.fdnutritionsummary.destroy({
+  db.FdNutritionSummaries.destroy({
     where: {
       FoodId: req.params.id
     }
@@ -201,7 +201,7 @@ app.delete("/api/del-fooddesc/:id", function (req, res) {
 
 
 app.post("/api/newFd", function(req, res){
-  db.fdnutritionsummary.create(req.body).then(function(dbFood) {
+  db.FdNutritionSummaries.create(req.body).then(function(dbFood) {
     res.json(dbFood);
   });
 });
@@ -211,7 +211,7 @@ app.post("/api/updFood/:id", function (req, res) {
   console.log("updFood\n" + req.body.FdName);
   console.log("updFood\n" + req.params.id);
 
-  db.fdnutritionsummary.update({
+  db.FdNutritionSummaries.update({
     FdName: req.body.FdName,
     Calories: req.body.Calories
   }, {
