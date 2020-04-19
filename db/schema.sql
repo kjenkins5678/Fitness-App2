@@ -4,13 +4,69 @@ CREATE DATABASE fitness_app2_db;
 
 USE fitness_app2_db;
 
-CREATE TABLE "activity_categories" (
-  "id" int NOT NULL AUTO_INCREMENT,
-  `category_name` varchar (255) NOT NULL,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
+CREATE TABLE "club" (
+  'id'                int NOT NULL AUTO_INCREMENT,
+  `club_name`         varchar (255) NOT NULL,
+  `created_at`        datetime NOT NULL,
+  `updated_at`        datetime NOT NULL,
   PRIMARY KEY ('id')
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE "member" (
+  'id'                int NOT NULL AUTO_INCREMENT,
+  `first_name`        varchar (128) NOT NULL,
+  `last_name`         varchar (128) NOT NULL,
+  'email'             varchar (128) NOT NULL,
+  'user_id'           varchar (16) NOT NULL,
+  `created_at`        datetime NOT NULL,
+  `updated_at`        datetime NOT NULL,
+  PRIMARY KEY ('id')
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE 'club_member_map' (
+   'club_id'          int NOT NULL,
+   'member_id'        int NOT NULL,
+   'linkedAt'         datetime NOT NULL, 
+   PRIMARAY KEY ('club_id, member_id')
+)  ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+   
+CREATE TABLE 'member_movie' (
+   'club_id'          int NOT NULL,
+   'member_id'        int NOT NULL,
+   'movie_id'         int NOT NULL,
+   'status'           varchar (16) NOT NULL, -- 'NEW', INPROG', 'DONE' 
+   'tmdb_id'          int NOT NULL, 
+   'synopsis'         varchar (1024), 
+   'poster_url'       varchar (128),
+   'reviews URL'      varchar (128), 
+   'created_at'       datetime NOT NULL,  
+   --<other attributes from TMDB?
+   PRIMARAY KEY ('club_id, member_id, movie_id')
+)  ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+   
+CREATE TABLE 'member_movie_comment' (
+   'club_id'          int NOT NULL,
+   'member_id'        int NOT NULL,
+   'movie_id'         int NOT NULL,
+   'comment_id'       int NOT NULL,
+   'comment'          varchar (1024),
+   'created_at'       datetime NOT NULL,  
+   PRIMARAY KEY ('club_id, member_id, movie_id, comment_id')
+)  ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  
+CREATE TABLE 'club_comment' (
+   'club_id'          int NOT NULL,
+   'member_id'        int NOT NULL,
+   'comment_id'       int NOT NULL,
+   'comment'          varchar (1024),
+   'created_at'       datetime NOT NULL,  
+   PRIMARAY KEY ('club_id, member_id, comment_id')
+)  ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+   
+   
+   
+
+
 
 CREATE TABLE `activities` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -117,7 +173,7 @@ CREATE TABLE `user_foodlog` (
   PRIMARY KEY (`id`),
   KEY `fk_user_idx` (`fk_user`),
   KEY `fk_food_idx` (`fk_food`),
-  CONSTRAINT `fk_food` FOREIGN KEY (`fk_food`) REFERENCES `fdnutritionsummary` (`FoodId`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_food` FOREIGN KEY (`fk_food`) REFERENCES `fdnutritionsummaries` (`FoodId`) ON UPDATE CASCADE,
   CONSTRAINT `fk_user` FOREIGN KEY (`fk_user`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
